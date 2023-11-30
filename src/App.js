@@ -1,18 +1,22 @@
+import { Outlet } from "react-router-dom";
 import "./App.css";
-import Navigation from "./Navigation/Navigation";
+
+import Navigation from "./Components/Navigation/Navigation";
 
 function App() {
   return (
-    <div className="App">
+    <header className="App">
       <Navigation />
+      <Outlet />
+      {/* <CategoryPage /> */}
 
-      <div
+      {/* <div
         style={{
           backgroundImage: "url(/images/background-image-shop.svg)",
         }}
         className="background-image"
-      ></div>
-    </div>
+      ></div> */}
+    </header>
   );
 }
 

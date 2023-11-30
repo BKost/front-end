@@ -1,11 +1,7 @@
-:root {
-}
-
 .App {
   min-height: 100vh;
-  background-color: #194b6a;
-  height: 150vh;
+  background-color: var(--background-color);
 }
-.background-image {
+/* .background-image {
   height: 100vh;
-}
+} */
