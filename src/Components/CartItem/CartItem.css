@@ -1,0 +1,35 @@
+.cart-item {
+  flex: 0 0 30%;
+}
+
+.cart-item-image {
+  height: auto;
+  width: 100%;
+  border-radius: var(--b-rad-image);
+  object-fit: cover;
+}
+
+.cart-item-btn {
+  /* display: inline-block; */
+  width: 100%;
+  background-color: var(--red-3);
+}
+
+.cart-item-btn:hover {
+  background-color: var(--red-1);
+}
+.cart-item-btn:active {
+  background-color: var(--red-3);
+}
+
+@media screen and (max-width: 800px) {
+  .cart-item {
+    flex: 0 0 45%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cart-item {
+    flex: 0 0 100%;
+  }
+}

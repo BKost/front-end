@@ -1,4 +1,10 @@
+import "./Register.css";
+
 function Register() {
-  return <div>Register</div>;
+  return (
+    <section className="consistent-padding">
+      <h2 className="text-align-center">Register</h2>
+    </section>
+  );
 }
 export default Register;

@@ -33,7 +33,7 @@ function Navigation() {
   ];
 
   const links = categories.map((item) => (
-    <NavLink className="categories-li" to={item.path}>
+    <NavLink className="categories-li" to={`categories${item.path}`}>
       {item.category}
     </NavLink>
   ));
@@ -65,6 +65,7 @@ function Navigation() {
           <div className="ul-container">
             <ul className="ul-center">
               <li
+                className="cursor-pointer"
                 // onMouseLeave={() => setCategoriesHover(false)}
                 onMouseEnter={() => setCategoriesHover(true)}
               >
@@ -73,13 +74,24 @@ function Navigation() {
               </li>
             </ul>
             <ul className="ul-right">
-              <li>Log in</li>
-              <li>Register</li>
+              <li>
+                <NavLink className="nav-link" to={"/login"}>
+                  Log in
+                </NavLink>
+              </li>
+              <li>
+                {" "}
+                <NavLink className="nav-link" to={"/register"}>
+                  Register
+                </NavLink>
+              </li>
               <li className="cart-li">
-                <div className="cart-nav">
-                  <ShoppingCartIcon fontSize="large" /> 2{" "}
-                  {/* <KeyboardArrowDownIcon fontSize="large" /> */}
-                </div>
+                <NavLink className="nav-link" to={"/cart"}>
+                  <div className="cart-nav">
+                    <ShoppingCartIcon fontSize="large" /> 2{" "}
+                    {/* <KeyboardArrowDownIcon fontSize="large" /> */}
+                  </div>
+                </NavLink>
               </li>
             </ul>
           </div>
@@ -88,20 +100,7 @@ function Navigation() {
               categoriesHover && "categories-container-opened"
             }`}
           >
-            <ul className="categories-ul">
-              {/* {categories.map((item) => (
-                <NavLink className="categories-li" to={item.path}>
-                  {item.category}
-                </NavLink>
-              ))} */}
-
-              {links}
-
-              {/* <li className="categories-li">Electronics</li>
-              <li className="categories-li">Home</li>
-              <li className="categories-li">Kitchen</li>
-              <li className="categories-li">Clothes</li> */}
-            </ul>
+            <ul className="categories-ul">{links}</ul>
           </div>
         </nav>
       ) : (
@@ -141,22 +140,24 @@ function Navigation() {
                 categoriesHover && "categories-container-mobile-open"
               } `}
             >
-              <ul className="categories-ul-mobile">
-                <li className="categories-li">Electronics</li>
-                <li className="categories-li">Home</li>
-                <li className="categories-li">Kitchen</li>
-                <li className="categories-li">Clothes</li>
-              </ul>
+              <ul className="categories-ul-mobile">{links}</ul>
             </div>
-            <li>Log in</li>
-            <li>Register</li>
-            <li className="mobile-cart-li">
+            <li>
               {" "}
-              <p>Shopping cart</p>
-              <div className="cart-nav cart-nav-mobile">
-                <ShoppingCartIcon fontSize="large" /> 2{" "}
-                {/* <KeyboardArrowDownIcon fontSize="large" /> */}
-              </div>
+              <NavLink to={"/login"}>Log in</NavLink>
+            </li>
+            <li>
+              {" "}
+              <NavLink to={"/register"}>Register</NavLink>
+            </li>
+            <li className="mobile-cart-li">
+              <NavLink to={"/cart"}>
+                <p>Shopping cart</p>
+                <div className="cart-nav cart-nav-mobile">
+                  <ShoppingCartIcon fontSize="large" /> 2{" "}
+                  {/* <KeyboardArrowDownIcon fontSize="large" /> */}
+                </div>
+              </NavLink>{" "}
             </li>
           </ul>
           <div

@@ -11,7 +11,13 @@ function ProductCard() {
 
   return (
     <article className="container product-card">
-      <img className="product-image" src={image} />
+      <img
+        className="product-image"
+        alt="product-image"
+        src={image}
+        height="2"
+        width="3"
+      />
       <time className="date-text">23/11/22</time>
       <h3>Headphones</h3>
       <p className="price-tag">

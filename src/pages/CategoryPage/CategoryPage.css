@@ -1,9 +1,9 @@
 .category-page {
   /* text-align: center; */
   min-height: 150vh;
-  margin: var(--sides-margin);
+  /* margin: var(--sides-padding);
   padding-top: var(--container-padding-top);
-  padding-bottom: 4em;
+  padding-bottom: var(--container-padding-bottom); */
   /* border: 1px solid black; */
 }
 

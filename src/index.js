@@ -5,6 +5,10 @@ import App from "./App";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import CategoryPage from "./pages/CategoryPage/CategoryPage";
 import ProductDetail from "./pages/ProductDetail/ProductDetail";
+import Register from "./pages/Register/Register";
+import Login from "./pages/Login/Login";
+import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
+import OrderPage from "./pages/OrderPage/OrderPage";
 
 const router = createBrowserRouter([
   {
@@ -19,27 +23,37 @@ const router = createBrowserRouter([
           </h2>
         ),
       },
+
       {
-        path: ":category",
+        path: "categories/:category",
         element: <CategoryPage />,
-        children: [
-          {
-            path: ":productId",
-            element: <ProductDetail />,
-          },
-        ],
+        // children: [
+        //   {
+        //     path: ":productId",
+        //     element: <ProductDetail />,
+        //   },
+        // ],
+      },
+
+      {
+        path: "categories/:category/:productId",
+        element: <ProductDetail />,
       },
       {
         path: "login",
-        element: <h2 style={{ paddingTop: "5em" }}>Login</h2>,
+        element: <Login />,
       },
       {
         path: "register",
-        element: <h2 style={{ paddingTop: "5em" }}>Register</h2>,
+        element: <Register />,
       },
       {
         path: "cart",
-        element: <h2 style={{ paddingTop: "5em" }}>Cart</h2>,
+        element: <ShoppingCart />,
+      },
+      {
+        path: "cart/order",
+        element: <OrderPage />,
       },
     ],
   },

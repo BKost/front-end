@@ -1,5 +1,6 @@
 .navigation {
   font-size: var(--nav-text);
+  font-size: var(--paragraph-text);
   display: flex;
   align-items: center;
   /* background-color: #031016; */
@@ -14,6 +15,7 @@
 .ul-container {
   padding: 0 5%;
   display: flex;
+
   width: 100%;
   position: relative;
   background-color: var(--background-color-2);
@@ -62,7 +64,7 @@
   /* height: 80px; */
   width: 100%;
   background-color: #82c0e1;
-  padding: 2em 0 1em 0;
+  padding: 1.5em 0 0.5em 0;
   display: flex;
   justify-content: center;
   position: absolute;
@@ -82,14 +84,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  gap: 1em;
   /* background-color: orange; */
 }
 
 .categories-li {
   color: var(--black-1);
 
-  padding: 0.5em 2em;
-  border-radius: 5em;
+  padding: 0.5em 1em;
+  border-radius: var(--b-rad-btn);
 }
 
 .categories-li:hover {
@@ -98,11 +101,11 @@
   /* cursor: pointer; */
 }
 
-.active {
+.categories-active-link {
   color: var(--black-1);
 
-  padding: 0.5em 2em;
-  border-radius: 5em;
+  padding: 0.5em 1em;
+  border-radius: var(--b-rad-btn);
 
   transition: all 0.2s ease-in;
   background-color: #c2eaff;
@@ -216,6 +219,9 @@
 .categories-ul-mobile {
   background-color: #82c0e1;
   padding: 1em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
   /* border-radius: 10px; */
 }
 .categories-ul-mobile > li {

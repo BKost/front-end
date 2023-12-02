@@ -24,7 +24,7 @@ function CategoryPage() {
     },
   ];
   return (
-    <section className="category-page">
+    <section className=" consistent-padding category-page">
       <h2 className="text-align-center">Category section</h2>
       <div className="products-container">
         <ProductCard />
