@@ -1,0 +1,17 @@
+.order-form {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.form-ul {
+  /* width: fit-content; */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  flex-wrap: wrap;
+  column-gap: 3em;
+  row-gap: 1em;
+}
