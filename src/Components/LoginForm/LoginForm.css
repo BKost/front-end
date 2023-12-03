@@ -1,4 +1,4 @@
-.register-form {
+.login-form {
   display: flex;
   flex-direction: column;
   gap: 2em;
@@ -7,10 +7,10 @@
   margin: 0 auto;
 }
 
-.register-form-ul {
+.login-form-ul {
   /* width: fit-content; */
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   flex-wrap: wrap;
   column-gap: 3em;
   row-gap: 1em;

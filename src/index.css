@@ -108,6 +108,8 @@ input {
   border-radius: var(--b-rad-btn);
   /* font-weight: 300; */
   padding: 0.5em 1em;
+
+  min-width: 30ch;
 }
 label {
   margin-bottom: 0.3em;
@@ -178,7 +180,7 @@ h3 {
 .input-container {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  /* width: fit-content; */
 }
 
 body {
