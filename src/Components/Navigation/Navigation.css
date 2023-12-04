@@ -101,7 +101,20 @@
   /* cursor: pointer; */
 }
 
-.categories-active-link {
+/* .categories-active-link {
+  color: var(--black-1);
+
+  padding: 0.5em 1em;
+  border-radius: var(--b-rad-btn);
+
+  transition: all 0.2s ease-in;
+  background-color: #c2eaff;
+} */
+
+.nav-active {
+  text-decoration: underline;
+}
+.category-active {
   color: var(--black-1);
 
   padding: 0.5em 1em;

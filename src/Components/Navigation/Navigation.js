@@ -1,53 +1,64 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import useScreenWidth from "../../hooks/useScreenWidth";
 import "./Navigation.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useParams } from "react-router-dom";
 
 function Navigation() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const { screenWidth } = useScreenWidth();
   const [categoriesHover, setCategoriesHover] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
+  const [active, setActive] = useState(false);
+  const [categoryChange, setCategoryChange] = useState(false);
 
-  const containerRef = useRef(null);
+  const { category: categoryParam } = useParams();
+  const { pathname } = useLocation();
 
   const categories = [
     {
       category: "Electronics",
-      path: "/electronics",
+      path: "electronics",
     },
     {
       category: "Home",
-      path: "/home",
+      path: "home",
     },
     {
       category: "Kitchen",
-      path: "/kitchen",
+      path: "kitchen",
     },
     {
       category: "Clothes",
-      path: "/clothes",
+      path: "clothes",
     },
   ];
 
   const links = categories.map((item) => (
-    <NavLink className="categories-li" to={`categories${item.path}`}>
+    <NavLink
+      className={`categories-li  ${
+        categoryParam === item.path && "category-active"
+      } `}
+      to={`categories/${item.path}`}
+    >
       {item.category}
     </NavLink>
   ));
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
+  function addActiveClass(path) {
+    if (path === pathname) {
+      return "nav-active";
+    } else {
+      return "";
+    }
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
+    // return "nav-active";
+  }
+
+  addActiveClass();
 
   function closeNavigation() {
     setMenuOpened(false);
@@ -75,18 +86,43 @@ function Navigation() {
             </ul>
             <ul className="ul-right">
               <li>
-                <NavLink className="nav-link" to={"/login"}>
+                <NavLink
+                  className={`${addActiveClass("/login")}`}
+                  to={"/login"}
+                >
                   Log in
                 </NavLink>
               </li>
               <li>
                 {" "}
-                <NavLink className="nav-link" to={"/register"}>
+                <NavLink
+                  className={`${addActiveClass("/register")}`}
+                  to={"/register"}
+                >
                   Register
                 </NavLink>
               </li>
+              <li>
+                {" "}
+                <NavLink
+                  className={`${addActiveClass("/user-page")}`}
+                  to={"/user-page"}
+                >
+                  My profile
+                </NavLink>
+              </li>
+              {/* DO NOT FORGET my-listings route !!! */}
+              {/* <li>
+                {" "}
+                <NavLink
+                  className={`${addActiveClass("/my-listings")}`}
+                  to={"/user-page"}
+                >
+                  My listings
+                </NavLink>
+              </li> */}
               <li className="cart-li">
-                <NavLink className="nav-link" to={"/cart"}>
+                <NavLink to={"/cart"} aria-label="View shopping cart, 2 items">
                   <div className="cart-nav">
                     <ShoppingCartIcon fontSize="large" /> 2{" "}
                     {/* <KeyboardArrowDownIcon fontSize="large" /> */}
@@ -104,13 +140,7 @@ function Navigation() {
           </div>
         </nav>
       ) : (
-        <nav
-          ref={containerRef}
-          className={"mobile-navigation"}
-          // className={`mobile-navigation ${
-          //   menuOpened && "mobile-navigation-opened"
-          // }`}
-        >
+        <nav className={"mobile-navigation"}>
           <div className="menu-icons">
             {menuOpened ? (
               <CloseIcon
@@ -144,14 +174,34 @@ function Navigation() {
             </div>
             <li>
               {" "}
-              <NavLink to={"/login"}>Log in</NavLink>
+              <NavLink className={`${addActiveClass("/login")}`} to={"/login"}>
+                Log in
+              </NavLink>
             </li>
             <li>
               {" "}
-              <NavLink to={"/register"}>Register</NavLink>
+              <NavLink
+                className={`${addActiveClass("/register")}`}
+                to={"/register"}
+              >
+                Register
+              </NavLink>
+            </li>
+            <li>
+              {" "}
+              <NavLink
+                className={`${addActiveClass("/user-page")}`}
+                to={"/user-page"}
+              >
+                My profile
+              </NavLink>
             </li>
             <li className="mobile-cart-li">
-              <NavLink to={"/cart"}>
+              <NavLink
+                className={`${addActiveClass("/cart")}`}
+                to={"/cart"}
+                aria-label="View shopping cart, 2 items"
+              >
                 <p>Shopping cart</p>
                 <div className="cart-nav cart-nav-mobile">
                   <ShoppingCartIcon fontSize="large" /> 2{" "}

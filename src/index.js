@@ -9,6 +9,7 @@ import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import OrderPage from "./pages/OrderPage/OrderPage";
+import UserPage from "./pages/UserPage/UserPage";
 
 const router = createBrowserRouter([
   {
@@ -18,9 +19,9 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          <h2 className="text-align-center" style={{ paddingTop: "5em" }}>
-            Home
-          </h2>
+          <section className="consistent-padding">
+            <h2 className="text-align-center ">Home</h2>
+          </section>
         ),
       },
 
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "user-page",
+        element: <UserPage />,
       },
       {
         path: "cart",

@@ -26,9 +26,9 @@
   gap: 1em;
 }
 
-.place-order-btn,
+/* .place-order-btn,
 .delete-all-btn {
-}
+} */
 
 .delete-all-btn {
   background-color: var(--red-2);

@@ -12,14 +12,6 @@
 .cart-item-btn {
   /* display: inline-block; */
   width: 100%;
-  background-color: var(--red-3);
-}
-
-.cart-item-btn:hover {
-  background-color: var(--red-1);
-}
-.cart-item-btn:active {
-  background-color: var(--red-3);
 }
 
 @media screen and (max-width: 800px) {

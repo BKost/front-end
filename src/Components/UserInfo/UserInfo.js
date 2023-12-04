@@ -1,16 +1,30 @@
-import "./OrderForm.css";
+import "./UserInfo.css";
 
-function OrderForm() {
+function UserInfo() {
   return (
     <form
       onClick={(e) => e.preventDefault()}
-      className="container order-form "
+      className="container user-info-form"
       action="POST"
     >
       <section>
+        <h3>User profile</h3>
+        <ul className="user-info-form-ul ">
+          <li>
+            <div className="input-container">
+              <label htmlFor="first_name">User name</label>
+              <input name="first_name" type="text" defaultValue="User123" />
+            </div>
+          </li>
+        </ul>
+        <button className="user-info-edit-btn blue-button" type="submit">
+          Edit
+        </button>
+      </section>
+      <section>
         <h3>Contact information</h3>
 
-        <ul className="order-form-ul ">
+        <ul className="user-info-form-ul ">
           <li>
             <div className="input-container">
               <label htmlFor="first_name">First Name</label>
@@ -43,11 +57,35 @@ function OrderForm() {
             </div>
           </li>
         </ul>
+        <button className="user-info-edit-btn blue-button" type="submit">
+          Edit
+        </button>
+      </section>
+      <section>
+        <h3>Password</h3>
+
+        <ul className="user-info-form-ul ">
+          <li>
+            <div className="input-container">
+              <label htmlFor="password">Password</label>
+              <input name="password" type="text" defaultValue="12345 " />
+            </div>
+          </li>
+          <li>
+            <div className="input-container">
+              <label htmlFor="confirm_password">Confirm password</label>
+              <input name="confirm_password" type="text" defaultValue="12345" />
+            </div>
+          </li>
+        </ul>
+        <button className="user-info-edit-btn blue-button" type="submit">
+          Edit
+        </button>
       </section>
       <section>
         <h3>Address</h3>
 
-        <ul className="order-form-ul ">
+        <ul className="user-info-form-ul ">
           <li>
             <div className="input-container">
               <label htmlFor="first_name">Street name</label>
@@ -75,12 +113,13 @@ function OrderForm() {
             </div>
           </li>
         </ul>
+        <button className="user-info-edit-btn blue-button" type="submit">
+          Edit
+        </button>
       </section>
 
-      <button className="blue-button" type="submit">
-        Continue to payment
-      </button>
+      {/* <button type="submit">Edit</button> */}
     </form>
   );
 }
-export default OrderForm;
+export default UserInfo;

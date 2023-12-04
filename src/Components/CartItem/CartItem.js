@@ -13,7 +13,7 @@ function CartItem() {
       />
       <h3>Headphones</h3>
       <p className="price-tag">Price: $ 300</p>
-      <button className="cart-item-btn">Delete</button>
+      <button className="cart-item-btn red-button">Delete</button>
     </li>
   );
 }

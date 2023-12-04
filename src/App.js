@@ -2,21 +2,15 @@ import { Outlet } from "react-router-dom";
 import "./App.css";
 
 import Navigation from "./Components/Navigation/Navigation";
+import LogOutModal from "./Components/LogOutModal/LogOutModal";
 
 function App() {
   return (
-    <header className="App">
+    <main className="App">
       <Navigation />
       <Outlet />
-      {/* <CategoryPage /> */}
-
-      {/* <div
-        style={{
-          backgroundImage: "url(/images/background-image-shop.svg)",
-        }}
-        className="background-image"
-      ></div> */}
-    </header>
+      {/* <LogOutModal /> */}
+    </main>
   );
 }
 

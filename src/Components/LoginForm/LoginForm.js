@@ -18,7 +18,7 @@ function LoginForm() {
               <input
                 name="email"
                 type="text"
-                value="kosturik.bohdan@gmail.com"
+                defaultValue="kosturik.bohdan@gmail.com"
               />
             </div>
           </li>
@@ -26,13 +26,15 @@ function LoginForm() {
             <div className="input-container">
               {" "}
               <label htmlFor="password">Password</label>
-              <input name="password" type="text" value="12345" />
+              <input name="password" type="text" defaultValue="12345" />
             </div>
           </li>
         </ul>
       </section>
 
-      <button type="submit">Log in</button>
+      <button className="blue-button" type="submit">
+        Log in
+      </button>
     </form>
   );
 }

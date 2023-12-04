@@ -35,7 +35,7 @@ function ProductCard() {
         tempora atque quae? Necessitatibus deleniti corporis, quae ex porro
         eveniet officia omnis numquam officiis totam?
       </p>
-      <Link className="details-btn" to={"gg"}>
+      <Link className="details-btn blue-button" to={"gg"}>
         Details
       </Link>
     </article>

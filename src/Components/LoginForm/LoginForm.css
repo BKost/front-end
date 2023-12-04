@@ -15,3 +15,17 @@
   column-gap: 3em;
   row-gap: 1em;
 }
+
+@media screen and (max-width: 480px) {
+  .login-form {
+    width: 100%;
+  }
+
+  .login-form-ul {
+    grid-template-columns: 1fr;
+  }
+
+  .login-form-ul input {
+    min-width: 100%;
+  }
+}

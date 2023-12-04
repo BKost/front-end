@@ -32,19 +32,11 @@
 .details-btn {
   display: inline-block;
   text-align: center;
-  background-color: var(--blue-2);
   min-width: 100%;
   width: 100%;
   padding: 0.5em 1em;
-  border-radius: 5px;
   border-radius: 0.3125em;
-}
-
-.details-btn:hover {
-  background-color: var(--blue-1);
-}
-.details-btn:active {
-  background-color: var(--blue-3);
+  border-radius: var(--b-rad-btn);
 }
 
 @media screen and (max-width: 800px) {
