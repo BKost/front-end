@@ -107,7 +107,8 @@ dialog {
 }
 
 button,
-input {
+input,
+textarea {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -121,11 +122,16 @@ input {
   background-color: rgb(55, 55, 160);
 }
 
+textarea {
+  resize: none;
+}
+
 button {
   border-radius: var(--b-rad-btn);
   padding: 0.5em 1em;
 }
-input {
+input,
+textarea {
   background-color: var(--background-color);
   border: 1px solid var(--blue-4);
   border-radius: var(--b-rad-btn);
@@ -134,6 +140,14 @@ input {
 
   min-width: 30ch;
 }
+
+@media screen and (max-width: 450px) {
+  input,
+  textarea {
+    min-width: 100%;
+  }
+}
+
 label {
   margin-bottom: 0.3em;
 }

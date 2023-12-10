@@ -112,15 +112,15 @@ function Navigation() {
                 </NavLink>
               </li>
               {/* DO NOT FORGET my-listings route !!! */}
-              {/* <li>
+              <li>
                 {" "}
                 <NavLink
                   className={`${addActiveClass("/my-listings")}`}
-                  to={"/user-page"}
+                  to={"/my-listings"}
                 >
                   My listings
                 </NavLink>
-              </li> */}
+              </li>
               <li className="cart-li">
                 <NavLink to={"/cart"} aria-label="View shopping cart, 2 items">
                   <div className="cart-nav">
@@ -194,6 +194,15 @@ function Navigation() {
                 to={"/user-page"}
               >
                 My profile
+              </NavLink>
+            </li>
+            <li>
+              {" "}
+              <NavLink
+                className={`${addActiveClass("/my-listings")}`}
+                to={"/my-listings"}
+              >
+                My listings
               </NavLink>
             </li>
             <li className="mobile-cart-li">

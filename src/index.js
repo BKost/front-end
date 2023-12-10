@@ -10,6 +10,8 @@ import Login from "./pages/Login/Login";
 import ShoppingCart from "./pages/ShoppingCart/ShoppingCart";
 import OrderPage from "./pages/OrderPage/OrderPage";
 import UserPage from "./pages/UserPage/UserPage";
+import MyListings from "./pages/MyListings/MyListings";
+import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
 
 const router = createBrowserRouter([
   {
@@ -51,6 +53,14 @@ const router = createBrowserRouter([
       {
         path: "user-page",
         element: <UserPage />,
+      },
+      {
+        path: "my-listings",
+        element: <MyListings />,
+      },
+      {
+        path: "my-listings/:myPostId",
+        element: <MyPostDetail />,
       },
       {
         path: "cart",

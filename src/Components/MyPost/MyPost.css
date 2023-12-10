@@ -1,0 +1,33 @@
+.my-post {
+  flex: 0 0 30%;
+}
+
+.my-post-image {
+  height: auto;
+  width: 100%;
+  border-radius: var(--b-rad-image);
+  object-fit: cover;
+}
+
+.my-post-btn {
+  /* display: inline-block; */
+  width: 100%;
+}
+
+.my-post-btns {
+  display: flex;
+  gap: 1em;
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 800px) {
+  .my-post {
+    flex: 0 0 45%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .my-post {
+    flex: 0 0 100%;
+  }
+}
