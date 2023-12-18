@@ -13,6 +13,8 @@ import UserPage from "./pages/UserPage/UserPage";
 import MyListings from "./pages/MyListings/MyListings";
 import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
 
+// import { action as registerAction } from "./Components/RegisterForm/RegisterForm";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -49,6 +51,7 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+        // action: registerAction,
       },
       {
         path: "user-page",

@@ -1,11 +1,41 @@
 import "./RegisterForm.css";
 
+// import { Form } from "react-router-dom";
+import customFetch from "../../utils/customFetch";
+import { useRef } from "react";
+
+// export const action = async ({ request }) => {
+//   console.log(request);
+
+//   try {
+//   } catch (error) {}
+
+//   return null;
+// };
+
 function RegisterForm() {
+  const formRef = useRef(null);
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log(formRef.current);
+
+    const formData = new FormData(formRef.current);
+
+    const formDataObj = Object.fromEntries(formData);
+
+    // Create object with address:{} property
+    // Send to register
+
+    console.log(formDataObj);
+  }
   return (
     <form
-      onClick={(e) => e.preventDefault()}
+      onClick={handleFormSubmit}
       className="container register-form "
-      action="POST"
+      action="post"
+      id="register-form"
+      ref={formRef}
     >
       <section>
         <h3>Your user name</h3>
@@ -13,8 +43,13 @@ function RegisterForm() {
         <ul className="register-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">User name</label>
-              <input name="first_name" type="text" defaultValue="Bohdan" />
+              <label htmlFor="user_name_register">User name</label>
+              <input
+                // id="user_name_register"
+                name="user_name"
+                type="text"
+                defaultValue="Bohdan"
+              />
             </div>
           </li>
         </ul>
@@ -26,7 +61,12 @@ function RegisterForm() {
           <li>
             <div className="input-container">
               <label htmlFor="first_name">First Name</label>
-              <input name="first_name" type="text" defaultValue="Bohdan" />
+              <input
+                id="first_name"
+                name="first_name"
+                type="text"
+                defaultValue="Bohdan"
+              />
             </div>
           </li>
           <li>
@@ -39,16 +79,16 @@ function RegisterForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">Phone number</label>
-              <input name="last_name" type="tel" defaultValue="0951670272" />
+              <label htmlFor="phone">Phone number</label>
+              <input name="phone" type="tel" defaultValue="0951670272" />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <input
-                name="last_name"
+                name="email"
                 type="text"
                 defaultValue="kosturik.bohdan@gmail.com"
               />
@@ -80,28 +120,28 @@ function RegisterForm() {
         <ul className="register-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">Street name</label>
-              <input name="first_name" type="text" defaultValue="Armegatan " />
+              <label htmlFor="street_name">Street name</label>
+              <input name="street_name" type="text" defaultValue="Armegatan " />
             </div>
           </li>
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">Street number</label>
-              <input name="first_name" type="text" defaultValue="32" />
-            </div>
-          </li>
-          <li>
-            <div className="input-container">
-              {" "}
-              <label htmlFor="last_name">City</label>
-              <input name="last_name" type="text" defaultValue="Stockholm" />
+              <label htmlFor="street_number">Street number</label>
+              <input name="street_number" type="text" defaultValue="32" />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">Postal code</label>
-              <input name="last_name" type="text" defaultValue="171 71" />
+              <label htmlFor="city">City</label>
+              <input name="city" type="text" defaultValue="Stockholm" />
+            </div>
+          </li>
+          <li>
+            <div className="input-container">
+              {" "}
+              <label htmlFor="postal_code">Postal code</label>
+              <input name="postal_code" type="text" defaultValue="171 71" />
             </div>
           </li>
         </ul>
