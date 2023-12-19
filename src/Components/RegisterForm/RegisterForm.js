@@ -4,15 +4,6 @@ import "./RegisterForm.css";
 import customFetch from "../../utils/customFetch";
 import { useRef } from "react";
 
-// export const action = async ({ request }) => {
-//   console.log(request);
-
-//   try {
-//   } catch (error) {}
-
-//   return null;
-// };
-
 function RegisterForm() {
   const formRef = useRef(null);
 
@@ -24,14 +15,51 @@ function RegisterForm() {
 
     const formDataObj = Object.fromEntries(formData);
 
+    const {
+      user_name,
+      first_name,
+      last_name,
+      phone,
+      password,
+      confirm_password,
+      email,
+      city,
+      postal_code,
+      street_name,
+      street_number,
+    } = formDataObj;
+
+    const data = {
+      user_name,
+      last_name,
+      first_name,
+      phone,
+      password,
+      confirm_password,
+      email,
+      address: {
+        city,
+        postal_code,
+        street_name,
+        street_number,
+      },
+    };
+
+    try {
+      const response = await customFetch.post("/register", data);
+      // console.log(registered);
+    } catch (error) {
+      const errData = error.response.data;
+
+      console.log(errData);
+    }
+
     // Create object with address:{} property
     // Send to register
-
-    console.log(formDataObj);
   }
   return (
     <form
-      onClick={handleFormSubmit}
+      onSubmit={handleFormSubmit}
       className="container register-form "
       action="post"
       id="register-form"
@@ -103,7 +131,7 @@ function RegisterForm() {
           <li>
             <div className="input-container">
               <label htmlFor="password">Password</label>
-              <input name="password" type="text" defaultValue="12345 " />
+              <input name="password" type="text" defaultValue="12345" />
             </div>
           </li>
           <li>

@@ -141,6 +141,11 @@ textarea {
   min-width: 30ch;
 }
 
+input[type="file"] {
+  background: none;
+  border: none;
+}
+
 @media screen and (max-width: 450px) {
   input,
   textarea {

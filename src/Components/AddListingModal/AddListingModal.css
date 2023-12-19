@@ -1,0 +1,60 @@
+.add-listing-dialog-container {
+  z-index: 100;
+
+  height: fit-content;
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+  justify-content: center;
+  padding: 0 5%;
+  max-width: 900px;
+}
+.add-listing-ul-container {
+  display: flex;
+  gap: 1em;
+}
+.add-listing-ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  width: 100%;
+
+  /* width: 60%; */
+}
+
+.add-listing-ul-2 {
+  width: 100%;
+
+  /* width: 40%; */
+}
+
+.add-listing-image {
+  max-width: 150px;
+  margin-top: 1em;
+  border-radius: var(--b-rad-btn);
+}
+
+.create-listing-btn {
+  margin-top: 1em;
+}
+
+@media screen and (max-width: 850px) {
+  .add-listing-ul-container {
+    flex-direction: column;
+  }
+  .add-listing-dialog-container {
+    max-width: 600px;
+  }
+}
+
+/* .dialog-btns {
+  display: flex;
+  margin-top: 1em;
+  gap: 1em;
+} */
+
+/* .dialog-btn {
+  width: 100%;
+} */

@@ -1,11 +1,47 @@
 import "./LoginForm.css";
+import customFetch from "../../utils/customFetch";
+import { useRef } from "react";
 
 function LoginForm() {
+  const formRef = useRef(null);
+
+  async function handleFormSubmit(event) {
+    event.preventDefault();
+    console.log(formRef.current);
+
+    const formData = new FormData(formRef.current);
+
+    const formDataObj = Object.fromEntries(formData);
+
+    // const {
+    //   password,
+
+    //   email,
+    // } = formDataObj;
+
+    console.log(formDataObj);
+
+    try {
+      const response = await customFetch.post("/login", formDataObj);
+      console.log(response);
+    } catch (error) {
+      const errData = error.response.data;
+      console.log(error);
+      console.log(errData);
+    }
+
+    // Create object with address:{} property
+    // Send to register
+
+    // console.log(formDataObj);
+  }
+
   return (
     <form
-      onClick={(e) => e.preventDefault()}
+      onSubmit={handleFormSubmit}
       className="container login-form "
       action="POST"
+      ref={formRef}
     >
       <section>
         <h3>Provide credentials</h3>
