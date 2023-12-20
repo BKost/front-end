@@ -1,13 +1,31 @@
 import "./MyListings.css";
 import MyPost from "../../Components/MyPost/MyPost";
 import AddListingModal from "../../Components/AddListingModal/AddListingModal";
+import { useEffect, useState } from "react";
 
-// make my listings page
-// Funtionalities:
-// -add new listing
-// -delete single listing
+import customFetch from "../../utils/customFetch";
+import axios from "axios";
 
 function MyListings() {
+  const [listingsArr, setListingsArr] = useState([]);
+
+  useEffect(() => {
+    // { withcredentials: true, credentials: "include" }
+    axios
+      .get("/api/my-listings")
+      .then((response) => {
+        const { listings } = response.data;
+        setListingsArr(listings);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const displayListings = listingsArr.map((obj) => (
+    <MyPost title={obj.title} price={obj.price} />
+  ));
+
+  console.log(displayListings);
+
   return (
     <section className="consistent-padding">
       <h2 className="text-align-center">My listings</h2>
@@ -19,12 +37,13 @@ function MyListings() {
         className=" 
          my-listings-list"
       >
+        {displayListings}
+        {/* <MyPost />
         <MyPost />
         <MyPost />
         <MyPost />
         <MyPost />
-        <MyPost />
-        <MyPost />
+        <MyPost /> */}
         <MyPost />
       </ul>
       {/* <AddListingModal /> */}

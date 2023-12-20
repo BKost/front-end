@@ -14,24 +14,11 @@ function AddListingModal() {
   async function handleFormSubmit(event) {
     event.preventDefault();
 
-    // console.log(formRef.values);
-
     const formData = new FormData(formRef.current);
 
     const formDataObj = Object.fromEntries(formData.entries());
 
     console.log(formDataObj);
-
-    // try {
-    //   const response = await customFetch.post("/my-listings", formDataObj);
-    //   console.log(response);
-
-    //   console.log();
-    // } catch (error) {
-    //   const errData = error.response.data;
-    //   console.log(error);
-    //   console.log(errData);
-    // }
   }
 
   return (

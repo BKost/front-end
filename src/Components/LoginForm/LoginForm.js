@@ -1,6 +1,7 @@
 import "./LoginForm.css";
 import customFetch from "../../utils/customFetch";
 import { useRef } from "react";
+import axios from "axios";
 
 function LoginForm() {
   const formRef = useRef(null);
@@ -22,12 +23,13 @@ function LoginForm() {
     console.log(formDataObj);
 
     try {
-      const response = await customFetch.post("/login", formDataObj);
+      // const response = await customFetch.post("/login", formDataObj);
+      const response = await axios.post("/api/login", formDataObj);
       console.log(response);
     } catch (error) {
-      const errData = error.response.data;
+      // const errData = error.response.data;
       console.log(error);
-      console.log(errData);
+      // console.log(errData);
     }
 
     // Create object with address:{} property
