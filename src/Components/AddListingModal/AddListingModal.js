@@ -1,15 +1,19 @@
 import "./AddListingModal.css";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import customFetch from "../../utils/customFetch";
 import image from "../../images/product.jpg";
+import axios from "axios";
 
-function AddListingModal() {
+function AddListingModal(props) {
   // check if all fields aren t empty
   // if empty ? display error message
   // if ok than send to server
   // close dialog
 
+  const { dialogOpened, setDialogOpened } = props.state;
+
   const formRef = useRef(null);
+  const dialogRef = useRef(null);
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -19,10 +23,27 @@ function AddListingModal() {
     const formDataObj = Object.fromEntries(formData.entries());
 
     console.log(formDataObj);
+
+    console.log(formDataObj.image);
+
+    try {
+      // send data to server
+      // const response = await axios.post("/api/my-listings", formDataObj);
+      // console.log(response);
+      // close dialog if successful
+      // closeDialog();
+    } catch (error) {
+      // Display error message in form
+      console.log(error);
+    }
+  }
+
+  function closeDialog() {
+    setDialogOpened(false);
   }
 
   return (
-    <dialog>
+    <dialog ref={dialogRef}>
       <form
         onSubmit={handleFormSubmit}
         className=" add-listing-dialog-container"
@@ -57,9 +78,17 @@ function AddListingModal() {
             name="description"
             defaultValue={"Some description text"}
           />
-          <button className="create-listing-btn blue-button">
-            + Create new listing
-          </button>
+          <div className="add-listing-btn-container">
+            <button
+              onClick={closeDialog}
+              className="create-listing-btn red-button"
+            >
+              Cancel
+            </button>
+            <button className="create-listing-btn blue-button">
+              + Create new listing
+            </button>
+          </div>
         </div>
       </form>
     </dialog>

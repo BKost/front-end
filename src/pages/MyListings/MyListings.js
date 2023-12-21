@@ -1,13 +1,19 @@
 import "./MyListings.css";
 import MyPost from "../../Components/MyPost/MyPost";
 import AddListingModal from "../../Components/AddListingModal/AddListingModal";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+
+import {
+  DialogContext,
+  DialogContextProvider,
+} from "../../context/dialogContext";
 
 import customFetch from "../../utils/customFetch";
 import axios from "axios";
 
 function MyListings() {
   const [listingsArr, setListingsArr] = useState([]);
+  const [dialogOpened, setDialogOpened] = useState(false);
 
   useEffect(() => {
     // { withcredentials: true, credentials: "include" }
@@ -20,33 +26,40 @@ function MyListings() {
       .catch((err) => console.log(err));
   }, []);
 
-  const displayListings = listingsArr.map((obj) => (
-    <MyPost title={obj.title} price={obj.price} />
-  ));
+  const displayListings = listingsArr.map((obj) => {
+    console.log(obj);
+    return <MyPost title={obj.title} price={obj.price} />;
+  });
 
   console.log(displayListings);
+
+  function openDialog() {
+    setDialogOpened(true);
+  }
+
+  function addNewListing() {
+    openDialog();
+    // open dialog
+  }
 
   return (
     <section className="consistent-padding">
       <h2 className="text-align-center">My listings</h2>
       {/* <div className="  shopping-cart "> */}
 
-      <button className="add-listing-btn blue-button">+ Add new listing</button>
+      <button onClick={addNewListing} className="add-listing-btn blue-button">
+        + Add new listing
+      </button>
 
       <ul
         className=" 
          my-listings-list"
       >
         {displayListings}
-        {/* <MyPost />
-        <MyPost />
-        <MyPost />
-        <MyPost />
-        <MyPost />
-        <MyPost /> */}
-        <MyPost />
       </ul>
-      {/* <AddListingModal /> */}
+      {dialogOpened && (
+        <AddListingModal state={{ dialogOpened, setDialogOpened }} />
+      )}
 
       {/* </div> */}
     </section>
