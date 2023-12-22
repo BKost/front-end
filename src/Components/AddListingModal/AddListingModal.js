@@ -20,16 +20,16 @@ function AddListingModal(props) {
 
     const formData = new FormData(formRef.current);
 
-    const formDataObj = Object.fromEntries(formData.entries());
-
-    console.log(formDataObj);
-
-    console.log(formDataObj.image);
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
 
     try {
       // send data to server
-      // const response = await axios.post("/api/my-listings", formDataObj);
-      // console.log(response);
+      const response = await axios.post("/api/my-listings", formData, config);
+      console.log(response);
       // close dialog if successful
       // closeDialog();
     } catch (error) {
