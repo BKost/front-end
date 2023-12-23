@@ -28,7 +28,7 @@ function MyListings() {
 
   const displayListings = listingsArr.map((obj) => {
     console.log(obj);
-    return <MyPost title={obj.title} price={obj.price} />;
+    return <MyPost title={obj.title} price={obj.price} imageSrc={obj.image} />;
   });
 
   console.log(displayListings);

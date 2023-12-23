@@ -3,14 +3,14 @@ import "./MyPost.css";
 import image from "../../images/product.jpg";
 import { Link } from "react-router-dom";
 
-function MyPost() {
+function MyPost(props) {
   return (
     <li className="container my-post">
       <img
         className="my-post-image"
         height="100"
         width="150"
-        src={image}
+        src={`http://localhost:5100/${props.image}`}
         alt="Product image"
       />
       <h3>Headphones</h3>

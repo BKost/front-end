@@ -31,7 +31,7 @@ function AddListingModal(props) {
       const response = await axios.post("/api/my-listings", formData, config);
       console.log(response);
       // close dialog if successful
-      // closeDialog();
+      closeDialog();
     } catch (error) {
       // Display error message in form
       console.log(error);
