@@ -3,12 +3,6 @@ import MyPost from "../../Components/MyPost/MyPost";
 import AddListingModal from "../../Components/AddListingModal/AddListingModal";
 import { useEffect, useState, useContext } from "react";
 
-import {
-  DialogContext,
-  DialogContextProvider,
-} from "../../context/dialogContext";
-
-import customFetch from "../../utils/customFetch";
 import axios from "axios";
 
 function MyListings() {
@@ -17,21 +11,32 @@ function MyListings() {
 
   useEffect(() => {
     // { withcredentials: true, credentials: "include" }
+
+    fetchMyListings();
+  }, []);
+
+  function fetchMyListings() {
     axios
       .get("/api/my-listings")
       .then((response) => {
         const { listings } = response.data;
-        setListingsArr(listings);
+
+        setListingsArr(listings.reverse());
       })
       .catch((err) => console.log(err));
-  }, []);
+  }
 
   const displayListings = listingsArr.map((obj) => {
-    console.log(obj);
-    return <MyPost title={obj.title} price={obj.price} imageSrc={obj.image} />;
+    return (
+      <MyPost
+        listingId={obj._id}
+        title={obj.title}
+        price={obj.price}
+        imageSrc={obj.image}
+        state={{ listingsArr, setListingsArr }}
+      />
+    );
   });
-
-  console.log(displayListings);
 
   function openDialog() {
     setDialogOpened(true);
@@ -58,7 +63,10 @@ function MyListings() {
         {displayListings}
       </ul>
       {dialogOpened && (
-        <AddListingModal state={{ dialogOpened, setDialogOpened }} />
+        <AddListingModal
+          state={{ dialogOpened, setDialogOpened }}
+          fetchListings={fetchMyListings}
+        />
       )}
 
       {/* </div> */}

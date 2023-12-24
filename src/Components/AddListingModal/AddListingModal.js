@@ -32,6 +32,7 @@ function AddListingModal(props) {
       console.log(response);
       // close dialog if successful
       closeDialog();
+      props.fetchListings();
     } catch (error) {
       // Display error message in form
       console.log(error);
