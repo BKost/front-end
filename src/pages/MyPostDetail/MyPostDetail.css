@@ -18,6 +18,9 @@
   width: 50%;
 
   height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }
 
 .my-post-detail-image-container {
@@ -27,7 +30,7 @@
 }
 
 .my-post-detail-edit-btn {
-  /* width: 100%; */
+  width: 100%;
   display: block;
   margin-top: 1.5em;
   margin-left: auto;

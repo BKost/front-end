@@ -1,6 +1,6 @@
 import "./MyPost.css";
 
-import image from "../../images/product.jpg";
+// import image from "../../images/product.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,6 @@ function MyPost(props) {
 
   function removeListingFromArray() {
     const filteredArr = listingsArr.filter((ob) => ob._id !== props.listingId);
-    console.log(filteredArr);
     setListingsArr(filteredArr);
   }
 
@@ -17,11 +16,9 @@ function MyPost(props) {
     axios
       .delete(`/api/my-listings/${props.listingId}`)
       .then((response) => {
-        // console.log(response);
         removeListingFromArray();
       })
       .catch((err) => console.log(err));
-    // console.log(props.listingId);
   }
   return (
     <li className="container my-post">
@@ -38,7 +35,7 @@ function MyPost(props) {
         <button onClick={deleteListing} className="my-post-btn red-button">
           Delete
         </button>
-        <Link style={{ width: "100%" }} to={"myPostId"}>
+        <Link style={{ width: "100%" }} to={props.listingId}>
           <button className="my-post-btn blue-button">Edit</button>
         </Link>
       </div>

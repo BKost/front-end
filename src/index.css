@@ -146,6 +146,13 @@ input[type="file"] {
   border: none;
 }
 
+input:disabled {
+  color: #a1a8aa;
+}
+textarea:disabled {
+  color: #a1a8aa;
+}
+
 @media screen and (max-width: 450px) {
   input,
   textarea {

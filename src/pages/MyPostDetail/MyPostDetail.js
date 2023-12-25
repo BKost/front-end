@@ -1,10 +1,72 @@
 import "./MyPostDetail.css";
 
 import image from "../../images/product.jpg";
+import { useParams } from "react-router-dom";
+import { useEffect, useState, useRef } from "react";
+import axios from "axios";
 
 function MyPostDetail() {
+  const { myPostId } = useParams();
+
+  const formRef = useRef(null);
+
+  const [listingData, setListingData] = useState({});
+  const [disabled, setDisabled] = useState(true);
+
+  useEffect(() => {
+    fetchSingleListing();
+  }, []);
+
+  function fetchSingleListing() {
+    axios
+      .get(`/api/my-listings/${myPostId}`)
+      .then((response) => {
+        const {
+          data: { singleListing },
+        } = response;
+
+        setListingData(singleListing);
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function updateListing(event) {
+    event.preventDefault();
+
+    const formData = new FormData(formRef.current);
+    console.log(Object.fromEntries(formData));
+    console.log(formRef.current);
+
+    axios
+      .patch(`/api/my-listings/${myPostId}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((response) => {
+        setDisabled(true);
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setListingData((prev) => {
+      return { ...prev, [name]: value };
+    });
+  }
+
+  function edit(event) {
+    event.preventDefault();
+
+    setDisabled(false);
+  }
+
   return (
-    <article className="consistent-padding my-post-detail-container">
+    <form ref={formRef} className="consistent-padding my-post-detail-container">
       <section className=" my-post-image-and-cta">
         <div className="container my-post-image-container ">
           {" "}
@@ -12,7 +74,7 @@ function MyPostDetail() {
             className="my-post-detail-image"
             width="300"
             height="200"
-            src={image}
+            src={listingData.image}
           />
         </div>
 
@@ -20,24 +82,27 @@ function MyPostDetail() {
           <div className="input-container">
             <label htmlFor="first_name">Product name</label>
 
-            <input name="first_name" type="text" defaultValue="Headphones" />
-            <button className="my-post-detail-edit-btn blue-button">
-              Edit
-            </button>
+            <input
+              onChange={handleChange}
+              name="title"
+              type="text"
+              value={listingData.title}
+              disabled={disabled}
+            />
           </div>
           <div className="input-container">
-            <label htmlFor="first_name">Image</label>
-            <input name="first_name" type="file" />
-            <button className="my-post-detail-edit-btn blue-button">
-              Edit
-            </button>
+            <label htmlFor="image">Image</label>
+            <input disabled={disabled} name="image" type="file" />
           </div>
           <div className="input-container">
             <label htmlFor="first_name">Price $</label>
-            <input name="first_name" type="text" defaultValue="300" />
-            <button className="my-post-detail-edit-btn blue-button">
-              Edit
-            </button>
+            <input
+              onChange={handleChange}
+              name="price"
+              type="text"
+              value={listingData.price}
+              disabled={disabled}
+            />
           </div>
         </div>
       </section>
@@ -45,15 +110,31 @@ function MyPostDetail() {
         <div className="input-container">
           <label htmlFor="first_name">Description</label>
           <textarea
-            name="first_name"
+            onChange={handleChange}
+            name="description"
             rows={"10"}
             type="text"
-            defaultValue="300"
+            value={listingData.description}
+            disabled={disabled}
           />
-          <button className="my-post-detail-edit-btn blue-button">Edit</button>
+          {disabled ? (
+            <button
+              onClick={edit}
+              className="my-post-detail-edit-btn blue-button"
+            >
+              Edit listing
+            </button>
+          ) : (
+            <button
+              onClick={updateListing}
+              className="my-post-detail-edit-btn red-button"
+            >
+              Save changes
+            </button>
+          )}
         </div>
       </section>
-    </article>
+    </form>
   );
 }
 export default MyPostDetail;
