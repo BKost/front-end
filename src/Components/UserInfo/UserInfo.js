@@ -1,25 +1,91 @@
+import axios from "axios";
 import "./UserInfo.css";
+import { useEffect, useRef, useState } from "react";
 
 function UserInfo() {
+  // fetch user profile info
+
+  const formRef = useRef(null);
+
+  const [disabled, setDisabled] = useState(true);
+  const [profileInfo, setProfileInfo] = useState({});
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
+
+  // console.log(profileInfo);
+
+  function fetchUserInfo() {
+    axios
+      .get("/api/my-profile")
+      .then((response) => {
+        const { userData } = response.data;
+
+        console.log(userData, "user data");
+        setProfileInfo((prev) => {
+          console.log(prev);
+
+          return { ...userData, password: "", confirm_password: "" };
+        });
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function updateUserProfile(event) {
+    event.preventDefault();
+
+    axios
+      .patch("/api/my-profile", profileInfo)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
+
+    // console.log(profileInfo);
+  }
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setProfileInfo((prev) => {
+      return { ...prev, [name]: value };
+    });
+  }
+
+  function handleChangeAddress(event) {
+    const { name, value } = event.target;
+
+    setProfileInfo((prev) => {
+      return { ...prev, address: { ...prev.address, [name]: value } };
+    });
+
+    // console.log(name, value);
+  }
+
+  function edit(event) {
+    event.preventDefault();
+    // console.log("submit");
+    setDisabled(false);
+  }
+
   return (
-    <form
-      onClick={(e) => e.preventDefault()}
-      className="container user-info-form"
-      action="POST"
-    >
+    <form ref={formRef} className="container user-info-form" action="POST">
       <section>
         <h3>User profile</h3>
         <ul className="user-info-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">User name</label>
-              <input name="first_name" type="text" defaultValue="User123" />
+              <label htmlFor="user_name">User name</label>
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="user_name"
+                type="text"
+                // defaultValue="User123"
+                value={profileInfo?.user_name}
+              />
             </div>
           </li>
         </ul>
-        <button className="user-info-edit-btn blue-button" type="submit">
-          Edit
-        </button>
       </section>
       <section>
         <h3>Contact information</h3>
@@ -28,59 +94,86 @@ function UserInfo() {
           <li>
             <div className="input-container">
               <label htmlFor="first_name">First Name</label>
-              <input name="first_name" type="text" defaultValue="Bohdan" />
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="first_name"
+                type="text"
+                value={profileInfo?.first_name}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
               <label htmlFor="last_name">Last Name</label>
-              <input name="last_name" type="text" defaultValue="Kosturik" />
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="last_name"
+                type="text"
+                value={profileInfo?.last_name}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
               <label htmlFor="last_name">Phone number</label>
-              <input name="last_name" type="tel" defaultValue="0951670272" />
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="phone"
+                type="tel"
+                defaultValue="0951670272"
+                value={profileInfo?.phone}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">E-mail</label>
+              <label htmlFor="email">E-mail</label>
               <input
-                name="last_name"
+                disabled={disabled}
+                onChange={handleChange}
+                name="email"
                 type="text"
-                defaultValue="kosturik.bohdan@gmail.com"
+                value={profileInfo?.email}
               />
             </div>
           </li>
         </ul>
-        <button className="user-info-edit-btn blue-button" type="submit">
-          Edit
-        </button>
       </section>
       <section>
-        <h3>Password</h3>
+        <h3>Create New Password</h3>
 
         <ul className="user-info-form-ul ">
           <li>
             <div className="input-container">
               <label htmlFor="password">Password</label>
-              <input name="password" type="text" defaultValue="12345 " />
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="password"
+                type="text"
+                // value={profileInfo?.password}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               <label htmlFor="confirm_password">Confirm password</label>
-              <input name="confirm_password" type="text" defaultValue="12345" />
+              <input
+                disabled={disabled}
+                onChange={handleChange}
+                name="confirm_password"
+                type="text"
+                // value={profileInfo?.confirm_password}
+              />
             </div>
           </li>
         </ul>
-        <button className="user-info-edit-btn blue-button" type="submit">
-          Edit
-        </button>
       </section>
       <section>
         <h3>Address</h3>
@@ -88,37 +181,68 @@ function UserInfo() {
         <ul className="user-info-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">Street name</label>
-              <input name="first_name" type="text" defaultValue="Armegatan " />
+              <label htmlFor="street_name">Street name</label>
+              <input
+                disabled={disabled}
+                onChange={handleChangeAddress}
+                name="street_name"
+                type="text"
+                value={profileInfo?.address?.street_name}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">Street number</label>
-              <input name="first_name" type="text" defaultValue="32" />
+              <label htmlFor="street_number">Street number</label>
+              <input
+                disabled={disabled}
+                onChange={handleChangeAddress}
+                name="street_number"
+                type="text"
+                value={profileInfo?.address?.street_number}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">City</label>
-              <input name="last_name" type="text" defaultValue="Stockholm" />
+              <label htmlFor="city">City</label>
+              <input
+                disabled={disabled}
+                onChange={handleChangeAddress}
+                name="city"
+                type="text"
+                value={profileInfo?.address?.city}
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">Postal code</label>
-              <input name="last_name" type="text" defaultValue="171 71" />
+              <label htmlFor="postal_code">Postal code</label>
+              <input
+                disabled={disabled}
+                onChange={handleChangeAddress}
+                name="postal_code"
+                type="text"
+                value={profileInfo?.address?.postal_code}
+              />
             </div>
           </li>
         </ul>
-        <button className="user-info-edit-btn blue-button" type="submit">
-          Edit
-        </button>
       </section>
-
-      {/* <button type="submit">Edit</button> */}
+      {disabled ? (
+        <button onClick={edit} className="user-profile-btn blue-button">
+          Edit user profile
+        </button>
+      ) : (
+        <button
+          onClick={updateUserProfile}
+          className="user-profile-btn red-button"
+        >
+          Save changes
+        </button>
+      )}
     </form>
   );
 }

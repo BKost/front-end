@@ -22,11 +22,13 @@
   border: 1px solid white;
 } */
 
-.user-info-edit-btn {
-  /* width: 100%; */
+/* .user-info-edit-btn {
   display: block;
   margin-top: 1.5em;
   margin-left: auto;
+} */
+.user-profile-btn {
+  margin-top: 1em;
 }
 
 @media screen and (max-width: 680px) {

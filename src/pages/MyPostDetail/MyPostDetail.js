@@ -26,7 +26,7 @@ function MyPostDetail() {
         } = response;
 
         setListingData(singleListing);
-        console.log(response);
+        // console.log(response);
       })
       .catch((err) => console.log(err));
   }
@@ -35,8 +35,8 @@ function MyPostDetail() {
     event.preventDefault();
 
     const formData = new FormData(formRef.current);
-    console.log(Object.fromEntries(formData));
-    console.log(formRef.current);
+    // console.log(Object.fromEntries(formData));
+    // console.log(formRef.current);
 
     axios
       .patch(`/api/my-listings/${myPostId}`, formData, {
@@ -46,7 +46,9 @@ function MyPostDetail() {
       })
       .then((response) => {
         setDisabled(true);
+        fetchSingleListing();
         console.log(response);
+        // console.log("Fetcg single listing after update");
       })
       .catch((err) => console.log(err));
   }

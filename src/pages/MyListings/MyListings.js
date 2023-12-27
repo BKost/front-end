@@ -10,8 +10,6 @@ function MyListings() {
   const [dialogOpened, setDialogOpened] = useState(false);
 
   useEffect(() => {
-    // { withcredentials: true, credentials: "include" }
-
     fetchMyListings();
   }, []);
 
