@@ -5,11 +5,6 @@ import image from "../../images/product.jpg";
 import axios from "axios";
 
 function AddListingModal(props) {
-  // check if all fields aren t empty
-  // if empty ? display error message
-  // if ok than send to server
-  // close dialog
-
   const { dialogOpened, setDialogOpened } = props.state;
 
   const formRef = useRef(null);
@@ -57,28 +52,40 @@ function AddListingModal(props) {
               <label htmlFor="">Upload image</label>
               <input name="image" type="file" />
 
-              <img className="add-listing-image" src={image} alt="" />
+              {/* <img className="add-listing-image" src={image} alt="" /> */}
             </li>
           </ul>
           <ul className="container add-listing-ul">
             <li className="input-container">
               <label htmlFor="">Title</label>
-              <input name="title" type="text" defaultValue={"Headphones"} />
+              <input name="title" type="text" />
             </li>
             <li className="input-container">
               <label htmlFor="">Price $</label>
-              <input name="price" type="text" defaultValue={"1200"} />
+              <input name="price" type="text" />
+            </li>
+
+            <li className="input-container">
+              <label htmlFor="category">Category</label>
+              <select
+                // onChange={handleChange}
+                // disabled={disabled}
+                id="category"
+                name="category"
+                // value={listingData.category}
+              >
+                <option value="">--Please choose an option--</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Home">Home</option>
+                <option value="Cars">Cars</option>
+                <option value="Digital">Digital</option>
+              </select>
             </li>
           </ul>
         </div>
         <div className="input-container container">
           <label htmlFor="">Description</label>
-          <textarea
-            rows={"5"}
-            type="text"
-            name="description"
-            defaultValue={"Some description text"}
-          />
+          <textarea rows={"5"} type="text" name="description" />
           <div className="add-listing-btn-container">
             <button
               onClick={closeDialog}

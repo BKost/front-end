@@ -43,7 +43,7 @@
 
 .product-detail-image {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: var(--b-rad-image);
   object-fit: cover;
 }

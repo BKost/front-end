@@ -12,6 +12,7 @@ import OrderPage from "./pages/OrderPage/OrderPage";
 import UserPage from "./pages/UserPage/UserPage";
 import MyListings from "./pages/MyListings/MyListings";
 import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
+import { CartProvider } from "./context/CartContext";
 
 // import { action as registerAction } from "./Components/RegisterForm/RegisterForm";
 
@@ -88,8 +89,9 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
-    {/* <App /> */}
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   </React.StrictMode>
 );
 

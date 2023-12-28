@@ -69,7 +69,7 @@ function MyPostDetail() {
 
   return (
     <form ref={formRef} className="consistent-padding my-post-detail-container">
-      <section className=" my-post-image-and-cta">
+      <section className="my-post-image-and-cta">
         <div className="container my-post-image-container ">
           {" "}
           <img
@@ -82,7 +82,7 @@ function MyPostDetail() {
 
         <div className=" container   my-post-detail-cta-container">
           <div className="input-container">
-            <label htmlFor="first_name">Product name</label>
+            <label htmlFor="title">Product name</label>
 
             <input
               onChange={handleChange}
@@ -97,7 +97,23 @@ function MyPostDetail() {
             <input disabled={disabled} name="image" type="file" />
           </div>
           <div className="input-container">
-            <label htmlFor="first_name">Price $</label>
+            <label htmlFor="category">Category</label>
+            <select
+              onChange={handleChange}
+              // disabled={disabled}
+              id="category"
+              name="category"
+              value={listingData.category}
+            >
+              <option value="">--Please choose an option--</option>
+              <option value="Electronics">Electronics</option>
+              <option value="Home">Home</option>
+              <option value="Cars">Cars</option>
+              <option value="Digital">Digital</option>
+            </select>
+          </div>
+          <div className="input-container">
+            <label htmlFor="price">Price $</label>
             <input
               onChange={handleChange}
               name="price"
@@ -110,7 +126,7 @@ function MyPostDetail() {
       </section>
       <section className="container product-description">
         <div className="input-container">
-          <label htmlFor="first_name">Description</label>
+          <label htmlFor="description">Description</label>
           <textarea
             onChange={handleChange}
             name="description"

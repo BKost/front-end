@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import useScreenWidth from "../../hooks/useScreenWidth";
 import "./Navigation.css";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -6,34 +6,36 @@ import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink, useLocation, useParams } from "react-router-dom";
+import { CartContext } from "../../context/CartContext";
 
 function Navigation() {
   // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { screenWidth } = useScreenWidth();
   const [categoriesHover, setCategoriesHover] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
-  const [active, setActive] = useState(false);
-  const [categoryChange, setCategoryChange] = useState(false);
+  const { cartItems } = useContext(CartContext);
 
   const { category: categoryParam } = useParams();
   const { pathname } = useLocation();
 
+  const numberOfItems = cartItems.length;
+
   const categories = [
     {
       category: "Electronics",
-      path: "electronics",
+      path: "Electronics",
     },
     {
       category: "Home",
-      path: "home",
+      path: "Home",
     },
     {
-      category: "Kitchen",
-      path: "kitchen",
+      category: "Cars",
+      path: "Cars",
     },
     {
-      category: "Clothes",
-      path: "clothes",
+      category: "Digital",
+      path: "Digital",
     },
   ];
 
@@ -58,7 +60,9 @@ function Navigation() {
     // return "nav-active";
   }
 
-  addActiveClass();
+  useEffect(() => {
+    addActiveClass();
+  }, []);
 
   function closeNavigation() {
     setMenuOpened(false);
@@ -124,7 +128,7 @@ function Navigation() {
               <li className="cart-li">
                 <NavLink to={"/cart"} aria-label="View shopping cart, 2 items">
                   <div className="cart-nav">
-                    <ShoppingCartIcon fontSize="large" /> 2{" "}
+                    <ShoppingCartIcon fontSize="large" /> {numberOfItems}
                     {/* <KeyboardArrowDownIcon fontSize="large" /> */}
                   </div>
                 </NavLink>
@@ -161,7 +165,7 @@ function Navigation() {
             )}
           </div>
 
-          <ul className={` mobile-ul ${menuOpened && "mobile-ul-opened"} `}>
+          <ul className={`mobile-ul ${menuOpened && "mobile-ul-opened"} `}>
             <li onClick={() => setCategoriesHover(!categoriesHover)}>
               Categories
             </li>
@@ -213,7 +217,7 @@ function Navigation() {
               >
                 <p>Shopping cart</p>
                 <div className="cart-nav cart-nav-mobile">
-                  <ShoppingCartIcon fontSize="large" /> 2{" "}
+                  <ShoppingCartIcon fontSize="large" /> {numberOfItems}
                   {/* <KeyboardArrowDownIcon fontSize="large" /> */}
                 </div>
               </NavLink>{" "}

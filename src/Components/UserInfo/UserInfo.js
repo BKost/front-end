@@ -37,7 +37,10 @@ function UserInfo() {
 
     axios
       .patch("/api/my-profile", profileInfo)
-      .then((response) => console.log(response))
+      .then((response) => {
+        setDisabled(true);
+        console.log(response);
+      })
       .catch((err) => console.log(err));
 
     // console.log(profileInfo);
