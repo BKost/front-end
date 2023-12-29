@@ -8,7 +8,7 @@ import { CartContext } from "../../context/CartContext";
 function ProductDetail() {
   const { productId } = useParams();
 
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, storeCartItems } = useContext(CartContext);
 
   const [itemData, setItemData] = useState({});
 
@@ -16,39 +16,37 @@ function ProductDetail() {
     fetchSingleItem();
   }, []);
 
-  console.log(cartItems);
+  useEffect(() => {
+    storeCartItems();
+  }, [cartItems]);
 
   function addToCart() {
-    // check if its already in card
-
-    if (cartItems.length === 0) {
-      return setCartItems((prev) => {
-        return [...prev, { ...itemData, amount: 1 }];
-      });
-    }
-
-    const isInCart = cartItems.some((item) => {
-      return item._id === itemData._id;
+    setCartItems((prev) => {
+      return [...prev, itemData];
     });
 
-    if (cartItems.length > 0 && !isInCart) {
-      return setCartItems((prev) => {
-        return [...prev, { ...itemData, amount: 1 }];
-      });
-    }
-
-    if (isInCart) {
-      console.log(isInCart);
-
-      const arr = cartItems.map((item) => {
-        if (item._id === itemData._id) {
-          return { ...item, amount: item.amount + 1 };
-        }
-      });
-
-      setCartItems(arr);
-    }
-
+    // if (cartItems.length === 0) {
+    //   return setCartItems((prev) => {
+    //     return [...prev, { ...itemData, amount: 1 }];
+    //   });
+    // }
+    // const isInCart = cartItems.some((item) => {
+    //   return item._id === itemData._id;
+    // });
+    // if (cartItems.length > 0 && !isInCart) {
+    //   return setCartItems((prev) => {
+    //     return [...prev, { ...itemData, amount: 1 }];
+    //   });
+    // }
+    // if (isInCart) {
+    //   console.log(isInCart);
+    //   const arr = cartItems.map((item) => {
+    //     if (item._id === itemData._id) {
+    //       return { ...item, amount: item.amount + 1 };
+    //     }
+    //   });
+    //   setCartItems(arr);
+    // }
     // if prodict exists than access the product and add amount to it
     // if not than push another product to array
   }

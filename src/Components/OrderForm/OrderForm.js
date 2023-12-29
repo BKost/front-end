@@ -1,9 +1,28 @@
+import { useRef } from "react";
 import "./OrderForm.css";
+import { useNavigate } from "react-router-dom";
 
 function OrderForm() {
+  // if user logged in, fill the form from user info
+
+  const formRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    console.log("Order form");
+
+    // const formData = new FormData(formRef.current);
+
+    // console.log(Object.fromEntries(formData));
+  }
+
   return (
     <form
-      onClick={(e) => e.preventDefault()}
+      ref={formRef}
+      onSubmit={handleSubmit}
       className="container order-form "
       action="POST"
     >

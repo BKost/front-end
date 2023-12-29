@@ -13,12 +13,12 @@ function Navigation() {
   const { screenWidth } = useScreenWidth();
   const [categoriesHover, setCategoriesHover] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, numberOfItems } = useContext(CartContext);
 
   const { category: categoryParam } = useParams();
   const { pathname } = useLocation();
 
-  const numberOfItems = cartItems.length;
+  // const numberOfItems = cartItems.length;
 
   const categories = [
     {

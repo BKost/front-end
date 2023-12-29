@@ -1,19 +1,35 @@
 import "./CartItem.css";
 import image from "../../images/product.jpg";
+import { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 
-function CartItem() {
+function CartItem(props) {
+  const { cartItems, setCartItems } = useContext(CartContext);
+
+  function deleteCartItem() {
+    const filteredItems = cartItems.filter((item, index) => {
+      return index !== props.index;
+    });
+
+    setCartItems(filteredItems);
+
+    localStorage.setItem("cart", JSON.stringify(filteredItems));
+  }
+
   return (
     <li className="container cart-item">
       <img
         className="cart-item-image"
         height="100"
         width="150"
-        src={image}
+        src={props.image}
         alt="Product image"
       />
-      <h3>Headphones</h3>
-      <p className="price-tag">Price: $ 300</p>
-      <button className="cart-item-btn red-button">Delete</button>
+      <h3>{props.title}</h3>
+      <p className="price-tag">Price: $ {props.price}</p>
+      <button onClick={deleteCartItem} className="cart-item-btn red-button">
+        Delete
+      </button>
     </li>
   );
 }

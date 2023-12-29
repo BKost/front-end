@@ -14,7 +14,18 @@ import MyListings from "./pages/MyListings/MyListings";
 import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
 import { CartProvider } from "./context/CartContext";
 
-// import { action as registerAction } from "./Components/RegisterForm/RegisterForm";
+// Stripe
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
+
+// console.log(process.env.REACT_APP_STRIPE_CLIENT_SECRET, "CLient secret");
+
+const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
+
+const options = {
+  // passing the client secret obtained from the server
+  clientSecret: "SECRET FROM SERVER",
+};
 
 const router = createBrowserRouter([
   {
@@ -90,7 +101,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <CartProvider>
+      {/* <Elements stripe={stripePromise} options={options}> */}
       <RouterProvider router={router} />
+      {/* </Elements> */}
     </CartProvider>
   </React.StrictMode>
 );
