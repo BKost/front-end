@@ -11,7 +11,7 @@ function ShoppingCart() {
   const { cartItems, setCartItems, numberOfItems, setTotalPrice, totalPrice } =
     useContext(CartContext);
 
-  const [isEmpty, setIsEmpty] = useState();
+  const [isEmpty, setIsEmpty] = useState(numberOfItems < 1);
 
   console.log(numberOfItems);
 
@@ -21,7 +21,7 @@ function ShoppingCart() {
 
   useEffect(() => {
     getCartItemsFromStorage();
-    setIsEmpty(!numberOfItems > 0);
+    setIsEmpty(numberOfItems < 1);
   }, []);
 
   function getCartItemsFromStorage() {

@@ -1,5 +1,5 @@
 import OrderForm from "../../Components/OrderForm/OrderForm";
-import OrderPayment from "../../OrderPayment/OrderPayment";
+import StripeCheckout from "../../StripeCheckout/StripeCheckout";
 import "./OrderPage.css";
 
 function OrderPage() {
@@ -12,7 +12,7 @@ function OrderPage() {
     <section className="consistent-padding ">
       <h2 className="text-align-center">Order Page</h2>
       {/* <OrderForm /> */}
-      <OrderPayment />
+      <StripeCheckout />
     </section>
   );
 }
