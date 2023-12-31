@@ -168,6 +168,10 @@ textarea:disabled {
   color: #a1a8aa;
 }
 
+button:disabled {
+  opacity: 0.7;
+}
+
 @media screen and (max-width: 450px) {
   input,
   textarea {

@@ -14,9 +14,14 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 function StripeCheckout() {
   const [clientSecret, setClientSecret] = useState("");
 
+  const appearence = {
+    theme: "stripe",
+  };
+
   const options = {
     // passing the client secret obtained from the server
     clientSecret,
+    // appearence,
   };
 
   useEffect(() => {
@@ -28,6 +33,8 @@ function StripeCheckout() {
       .post("/api/payment", { cartItems: [1, 2, 3] })
       .then((response) => {
         const { secretKey } = response.data;
+
+        console.log(response.data);
         setClientSecret(secretKey);
       })
       .catch((err) => console.log(err));
