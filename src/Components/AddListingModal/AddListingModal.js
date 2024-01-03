@@ -6,9 +6,27 @@ import axios from "axios";
 
 function AddListingModal(props) {
   const { dialogOpened, setDialogOpened } = props.state;
+  const [uploadImageSrc, setUploadImageSrc] = useState(null);
 
   const formRef = useRef(null);
-  const dialogRef = useRef(null);
+  const imageInputRef = useRef(null);
+  const imageRef = useRef(null);
+
+  function showImageFile() {
+    const file = imageInputRef.current.files[0];
+
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      setUploadImageSrc(event.target.result);
+      console.log(event.target.result);
+      console.log("loaded");
+    };
+
+    reader.readAsDataURL(file);
+
+    // console.log(file, reader);
+  }
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -39,7 +57,7 @@ function AddListingModal(props) {
   }
 
   return (
-    <dialog ref={dialogRef}>
+    <dialog className="add-listing-dialog">
       <form
         onSubmit={handleFormSubmit}
         className=" add-listing-dialog-container"
@@ -50,9 +68,19 @@ function AddListingModal(props) {
           <ul className="container add-listing-ul-2">
             <li className="input-container">
               <label htmlFor="">Upload image</label>
-              <input name="image" type="file" />
+              <input
+                ref={imageInputRef}
+                onChange={showImageFile}
+                name="image"
+                type="file"
+              />
 
-              {/* <img className="add-listing-image" src={image} alt="" /> */}
+              <img
+                className="add-listing-image"
+                ref={imageRef}
+                src={uploadImageSrc}
+                alt=""
+              />
             </li>
           </ul>
           <ul className="container add-listing-ul">

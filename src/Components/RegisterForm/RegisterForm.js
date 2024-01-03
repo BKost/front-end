@@ -3,9 +3,11 @@ import "./RegisterForm.css";
 // import { Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
 import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 function RegisterForm() {
   const formRef = useRef(null);
+  const navigate = useNavigate(null);
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -48,6 +50,7 @@ function RegisterForm() {
     try {
       const response = await customFetch.post("/register", data);
       // console.log(registered);
+      navigate("/login");
     } catch (error) {
       const errData = error.response.data;
 

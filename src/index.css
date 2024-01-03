@@ -105,7 +105,6 @@ dialog {
   border: none;
   color: inherit;
 
-  overflow-y: scroll;
   padding-bottom: 3em;
 }
 
@@ -250,6 +249,16 @@ h3 {
   flex-direction: column;
 
   /* width: fit-content; */
+}
+.yellow-button {
+  background-color: var(--yellow-2);
+}
+
+.yellow-button:hover {
+  background-color: var(--yellow-1);
+}
+.yellow-button:active {
+  background-color: var(--yellow-3);
 }
 
 .red-button {

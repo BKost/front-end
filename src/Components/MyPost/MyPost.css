@@ -1,9 +1,14 @@
 .my-post {
   flex: 0 0 30%;
+  /* height: fit-content; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .my-post-image {
-  height: auto;
+  height: 250px;
+  margin-bottom: 1em;
   width: 100%;
   border-radius: var(--b-rad-image);
   object-fit: cover;

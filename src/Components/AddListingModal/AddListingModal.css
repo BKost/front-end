@@ -1,3 +1,7 @@
+.add-listing-dialog {
+  overflow-y: scroll;
+}
+
 .add-listing-dialog-container {
   z-index: 100;
   height: fit-content;
@@ -30,9 +34,12 @@
 }
 
 .add-listing-image {
-  max-width: 150px;
+  width: 150px;
+
+  height: 150px;
   margin-top: 1em;
   border-radius: var(--b-rad-btn);
+  object-fit: cover;
 }
 
 .create-listing-btn {

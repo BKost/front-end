@@ -29,15 +29,17 @@ function MyPost(props) {
         src={`${props.imageSrc}`}
         alt="Product image"
       />
-      <h3>{props.title}</h3>
-      <p className="price-tag">Price: $ {props.price}</p>
-      <div className="my-post-btns">
-        <button onClick={deleteListing} className="my-post-btn red-button">
-          Delete
-        </button>
-        <Link style={{ width: "100%" }} to={props.listingId}>
-          <button className="my-post-btn blue-button">Edit</button>
-        </Link>
+      <div className="">
+        <h3>{props.title}</h3>
+        <p className="price-tag">Price: $ {props.price}</p>
+        <div className="my-post-btns">
+          <button onClick={deleteListing} className="my-post-btn red-button">
+            Delete
+          </button>
+          <Link style={{ width: "100%" }} to={props.listingId}>
+            <button className="my-post-btn blue-button">Edit</button>
+          </Link>
+        </div>
       </div>
     </li>
   );

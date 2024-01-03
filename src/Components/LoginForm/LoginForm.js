@@ -2,9 +2,14 @@ import "./LoginForm.css";
 import customFetch from "../../utils/customFetch";
 import { useRef } from "react";
 import axios from "axios";
+import { useUserContext } from "../../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
+  const { setIsLoggedIn, isLoggedIn } = useUserContext();
   const formRef = useRef(null);
+
+  const navigate = useNavigate();
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -25,6 +30,10 @@ function LoginForm() {
     try {
       // const response = await customFetch.post("/login", formDataObj);
       const response = await axios.post("/api/login", formDataObj);
+      const { user_name } = response.data;
+      setIsLoggedIn(true);
+      // localStorage.setItem("userName", JSON.stringify({ user_name }));
+      navigate("/");
       console.log(response);
     } catch (error) {
       // const errData = error.response.data;

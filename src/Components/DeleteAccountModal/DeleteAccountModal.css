@@ -1,0 +1,16 @@
+.delete-account-dialog {
+}
+.delete-account-dialog-container {
+  height: fit-content;
+  margin-top: 10%;
+}
+
+.delete-account-dialog-btns {
+  display: flex;
+  margin-top: 1em;
+  gap: 1em;
+}
+
+.delete-account-dialog-btn {
+  width: 100%;
+}

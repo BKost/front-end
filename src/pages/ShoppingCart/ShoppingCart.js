@@ -17,11 +17,11 @@ function ShoppingCart() {
 
   useEffect(() => {
     calculateTotalPrice();
+    setIsEmpty(numberOfItems < 1);
   }, [cartItems]);
 
   useEffect(() => {
     getCartItemsFromStorage();
-    setIsEmpty(numberOfItems < 1);
   }, []);
 
   function getCartItemsFromStorage() {

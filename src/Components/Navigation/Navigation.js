@@ -7,16 +7,21 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import { useUserContext } from "../../context/UserContext";
+import axios from "axios";
 
 function Navigation() {
-  // const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const { screenWidth } = useScreenWidth();
   const [categoriesHover, setCategoriesHover] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
+
   const { cartItems, numberOfItems } = useContext(CartContext);
+  const { setShowLogout } = useUserContext();
 
   const { category: categoryParam } = useParams();
   const { pathname } = useLocation();
+
+  const { isLoggedIn } = useUserContext();
 
   // const numberOfItems = cartItems.length;
 
@@ -89,42 +94,55 @@ function Navigation() {
               </li>
             </ul>
             <ul className="ul-right">
-              <li>
-                <NavLink
-                  className={`${addActiveClass("/login")}`}
-                  to={"/login"}
-                >
-                  Log in
-                </NavLink>
-              </li>
-              <li>
-                {" "}
-                <NavLink
-                  className={`${addActiveClass("/register")}`}
-                  to={"/register"}
-                >
-                  Register
-                </NavLink>
-              </li>
-              <li>
-                {" "}
-                <NavLink
-                  className={`${addActiveClass("/user-page")}`}
-                  to={"/user-page"}
-                >
-                  My profile
-                </NavLink>
-              </li>
-              {/* DO NOT FORGET my-listings route !!! */}
-              <li>
-                {" "}
-                <NavLink
-                  className={`${addActiveClass("/my-listings")}`}
-                  to={"/my-listings"}
-                >
-                  My listings
-                </NavLink>
-              </li>
+              {!isLoggedIn && (
+                <li>
+                  <NavLink
+                    className={`${addActiveClass("/login")}`}
+                    to={"/login"}
+                  >
+                    Log in
+                  </NavLink>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  {" "}
+                  <NavLink to={"/"} onClick={() => setShowLogout(true)}>
+                    Log out
+                  </NavLink>
+                </li>
+              )}
+              {!isLoggedIn && (
+                <li>
+                  <NavLink
+                    className={`${addActiveClass("/register")}`}
+                    to={"/register"}
+                  >
+                    Register
+                  </NavLink>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  <NavLink
+                    className={`${addActiveClass("/user-page")}`}
+                    to={"/user-page"}
+                  >
+                    My profile
+                  </NavLink>
+                </li>
+              )}
+              {isLoggedIn && (
+                <li>
+                  {" "}
+                  <NavLink
+                    className={`${addActiveClass("/my-listings")}`}
+                    to={"/my-listings"}
+                  >
+                    My listings
+                  </NavLink>
+                </li>
+              )}
               <li className="cart-li">
                 <NavLink to={"/cart"} aria-label="View shopping cart, 2 items">
                   <div className="cart-nav">
@@ -176,39 +194,58 @@ function Navigation() {
             >
               <ul className="categories-ul-mobile">{links}</ul>
             </div>
-            <li>
-              {" "}
-              <NavLink className={`${addActiveClass("/login")}`} to={"/login"}>
-                Log in
-              </NavLink>
-            </li>
-            <li>
-              {" "}
-              <NavLink
-                className={`${addActiveClass("/register")}`}
-                to={"/register"}
-              >
-                Register
-              </NavLink>
-            </li>
-            <li>
-              {" "}
-              <NavLink
-                className={`${addActiveClass("/user-page")}`}
-                to={"/user-page"}
-              >
-                My profile
-              </NavLink>
-            </li>
-            <li>
-              {" "}
-              <NavLink
-                className={`${addActiveClass("/my-listings")}`}
-                to={"/my-listings"}
-              >
-                My listings
-              </NavLink>
-            </li>
+            {!isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink
+                  className={`${addActiveClass("/login")}`}
+                  to={"/login"}
+                >
+                  Log in
+                </NavLink>
+              </li>
+            )}
+            {isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink to={"/"} onClick={() => setShowLogout(true)}>
+                  Log out
+                </NavLink>
+              </li>
+            )}
+            {!isLoggedIn && (
+              <li>
+                <NavLink
+                  className={`${addActiveClass("/register")}`}
+                  to={"/register"}
+                >
+                  Register
+                </NavLink>
+              </li>
+            )}
+            {isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink
+                  className={`${addActiveClass("/user-page")}`}
+                  to={"/user-page"}
+                >
+                  My profile
+                </NavLink>
+              </li>
+            )}
+
+            {isLoggedIn && (
+              <li>
+                {" "}
+                <NavLink
+                  className={`${addActiveClass("/my-listings")}`}
+                  to={"/my-listings"}
+                >
+                  My listings
+                </NavLink>
+              </li>
+            )}
             <li className="mobile-cart-li">
               <NavLink
                 className={`${addActiveClass("/cart")}`}
