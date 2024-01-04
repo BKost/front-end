@@ -244,6 +244,12 @@ h3 {
   padding-bottom: var(--container-padding-bottom);
 }
 
+.error-message {
+  /* color: var(--red-1); */
+  color: #ff5555;
+  margin: 0;
+}
+
 .input-container {
   display: flex;
   flex-direction: column;

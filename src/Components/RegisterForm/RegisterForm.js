@@ -2,12 +2,17 @@ import "./RegisterForm.css";
 
 // import { Form } from "react-router-dom";
 import customFetch from "../../utils/customFetch";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useErrorMessage from "../../hooks/useErrorMessage";
 
 function RegisterForm() {
   const formRef = useRef(null);
   const navigate = useNavigate(null);
+
+  const { setErrorMessage, ErrorMessageElement } = useErrorMessage();
+
+  // const [errorMessage, setErrorMessage] = useState("");
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -49,12 +54,15 @@ function RegisterForm() {
 
     try {
       const response = await customFetch.post("/register", data);
-      // console.log(registered);
+      console.log(response);
+
       navigate("/login");
     } catch (error) {
-      const errData = error.response.data;
+      const { msg } = error.response.data;
 
-      console.log(errData);
+      setErrorMessage(msg);
+
+      console.log(msg);
     }
 
     // Create object with address:{} property
@@ -74,9 +82,10 @@ function RegisterForm() {
         <ul className="register-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="user_name_register">User name</label>
+              <label htmlFor="user_name_register">User name *</label>
               <input
                 // id="user_name_register"
+                required
                 name="user_name"
                 type="text"
                 defaultValue="Bohdan"
@@ -91,8 +100,9 @@ function RegisterForm() {
         <ul className="register-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">First Name</label>
+              <label htmlFor="first_name">First Name *</label>
               <input
+                required
                 id="first_name"
                 name="first_name"
                 type="text"
@@ -103,22 +113,33 @@ function RegisterForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">Last Name</label>
-              <input name="last_name" type="text" defaultValue="Kosturik" />
-            </div>
-          </li>
-          <li>
-            <div className="input-container">
-              {" "}
-              <label htmlFor="phone">Phone number</label>
-              <input name="phone" type="tel" defaultValue="0951670272" />
-            </div>
-          </li>
-          <li>
-            <div className="input-container">
-              {" "}
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="last_name">Last Name *</label>
               <input
+                required
+                name="last_name"
+                type="text"
+                defaultValue="Kosturik"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="input-container">
+              {" "}
+              <label htmlFor="phone">Phone number *</label>
+              <input
+                required
+                name="phone"
+                type="tel"
+                defaultValue="0951670272"
+              />
+            </div>
+          </li>
+          <li>
+            <div className="input-container">
+              {" "}
+              <label htmlFor="email">E-mail *</label>
+              <input
+                required
                 name="email"
                 type="text"
                 defaultValue="kosturik.bohdan@gmail.com"
@@ -133,14 +154,24 @@ function RegisterForm() {
         <ul className="register-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="password">Password</label>
-              <input name="password" type="text" defaultValue="12345" />
+              <label htmlFor="password">Password *</label>
+              <input
+                required
+                name="password"
+                type="text"
+                defaultValue="12345"
+              />
             </div>
           </li>
           <li>
             <div className="input-container">
-              <label htmlFor="confirm_password">Confirm password</label>
-              <input name="confirm_password" type="text" defaultValue="12345" />
+              <label htmlFor="confirm_password">Confirm password *</label>
+              <input
+                required
+                name="confirm_password"
+                type="text"
+                defaultValue="12345"
+              />
             </div>
           </li>
         </ul>
@@ -152,32 +183,35 @@ function RegisterForm() {
           <li>
             <div className="input-container">
               <label htmlFor="street_name">Street name</label>
-              <input name="street_name" type="text" defaultValue="Armegatan " />
+              <input name="street_name" type="text" />
             </div>
           </li>
           <li>
             <div className="input-container">
               <label htmlFor="street_number">Street number</label>
-              <input name="street_number" type="text" defaultValue="32" />
+              <input name="street_number" type="text" />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
               <label htmlFor="city">City</label>
-              <input name="city" type="text" defaultValue="Stockholm" />
+              <input name="city" type="text" />
             </div>
           </li>
           <li>
             <div className="input-container">
               {" "}
               <label htmlFor="postal_code">Postal code</label>
-              <input name="postal_code" type="text" defaultValue="171 71" />
+              <input name="postal_code" type="text" />
             </div>
           </li>
         </ul>
       </section>
-
+      {/* {errorMessage && (
+        <p className="error-message text-align-center">{errorMessage} !</p>
+      )} */}
+      {ErrorMessageElement}
       <button className="register-btn" type="submit">
         Create account
       </button>

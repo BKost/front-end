@@ -8,7 +8,8 @@ import { CartContext } from "../../context/CartContext";
 function ProductDetail() {
   const { productId } = useParams();
 
-  const { cartItems, setCartItems, storeCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, storeCartItems, setNumberOfItems } =
+    useContext(CartContext);
 
   const [itemData, setItemData] = useState({});
 
@@ -18,7 +19,7 @@ function ProductDetail() {
 
   useEffect(() => {
     storeCartItems();
-  }, [cartItems]);
+  }, [addToCart]);
 
   function addToCart() {
     setCartItems((prev) => {
@@ -58,15 +59,12 @@ function ProductDetail() {
         const { singleItem } = response.data;
 
         setItemData(singleItem);
-
-        console.log(response);
       })
       .catch((err) => console.log(err));
   }
 
   return (
     <article className="consistent-padding product-detail-container">
-      {/* <h2 className="text-align-center">Product Name</h2> */}
       <section className=" product-image-and-cta">
         <div className="container product-image-container ">
           {" "}

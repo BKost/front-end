@@ -1,12 +1,14 @@
 import "./AddListingModal.css";
 import { useEffect, useRef, useState } from "react";
-import customFetch from "../../utils/customFetch";
-import image from "../../images/product.jpg";
 import axios from "axios";
+import useErrorMessage from "../../hooks/useErrorMessage";
 
 function AddListingModal(props) {
   const { dialogOpened, setDialogOpened } = props.state;
   const [uploadImageSrc, setUploadImageSrc] = useState(null);
+  const { setErrorMessage, ErrorMessageElement } = useErrorMessage({
+    marginTop: "1em",
+  });
 
   const formRef = useRef(null);
   const imageInputRef = useRef(null);
@@ -19,8 +21,6 @@ function AddListingModal(props) {
 
     reader.onload = (event) => {
       setUploadImageSrc(event.target.result);
-      console.log(event.target.result);
-      console.log("loaded");
     };
 
     reader.readAsDataURL(file);
@@ -47,8 +47,9 @@ function AddListingModal(props) {
       closeDialog();
       props.fetchListings();
     } catch (error) {
-      // Display error message in form
-      console.log(error);
+      const { msg } = error.response.data;
+      setErrorMessage(msg);
+      console.log(msg);
     }
   }
 
@@ -67,42 +68,38 @@ function AddListingModal(props) {
         <div className="add-listing-ul-container">
           <ul className="container add-listing-ul-2">
             <li className="input-container">
-              <label htmlFor="">Upload image</label>
+              <label htmlFor="">Upload image *</label>
               <input
+                required
                 ref={imageInputRef}
                 onChange={showImageFile}
                 name="image"
                 type="file"
               />
-
-              <img
-                className="add-listing-image"
-                ref={imageRef}
-                src={uploadImageSrc}
-                alt=""
-              />
+              {uploadImageSrc && (
+                <img
+                  className="add-listing-image"
+                  ref={imageRef}
+                  src={uploadImageSrc}
+                  alt="Image of your listing"
+                />
+              )}
             </li>
           </ul>
           <ul className="container add-listing-ul">
             <li className="input-container">
-              <label htmlFor="">Title</label>
-              <input name="title" type="text" />
+              <label htmlFor="">Title *</label>
+              <input required name="title" type="text" />
             </li>
             <li className="input-container">
-              <label htmlFor="">Price $</label>
-              <input name="price" type="text" />
+              <label htmlFor="">Price $ *</label>
+              <input required name="price" type="number" />
             </li>
 
             <li className="input-container">
-              <label htmlFor="category">Category</label>
-              <select
-                // onChange={handleChange}
-                // disabled={disabled}
-                id="category"
-                name="category"
-                // value={listingData.category}
-              >
-                <option value="">--Please choose an option--</option>
+              <label htmlFor="category">Category *</label>
+              <select id="category" name="category">
+                <option value="">--Please select a category--</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Home">Home</option>
                 <option value="Cars">Cars</option>
@@ -112,8 +109,9 @@ function AddListingModal(props) {
           </ul>
         </div>
         <div className="input-container container">
-          <label htmlFor="">Description</label>
-          <textarea rows={"5"} type="text" name="description" />
+          <label htmlFor="">Description *</label>
+          <textarea required rows={"5"} type="text" name="description" />
+          {ErrorMessageElement}
           <div className="add-listing-btn-container">
             <button
               onClick={closeDialog}

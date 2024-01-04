@@ -4,7 +4,7 @@ import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 
 function CartItem(props) {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems, setNumberOfItems } = useContext(CartContext);
 
   function deleteCartItem() {
     const filteredItems = cartItems.filter((item, index) => {

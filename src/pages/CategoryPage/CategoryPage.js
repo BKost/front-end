@@ -37,7 +37,7 @@ function CategoryPage() {
 
   return (
     <section className=" consistent-padding category-page">
-      <h2 className="text-align-center">Category section</h2>
+      <h2 className="text-align-center">{`${category}`}</h2>
       <div className="products-container">
         {displayItems}
         {/* <ProductCard />

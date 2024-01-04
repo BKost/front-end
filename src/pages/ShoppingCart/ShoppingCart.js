@@ -11,13 +11,11 @@ function ShoppingCart() {
   const { cartItems, setCartItems, numberOfItems, setTotalPrice, totalPrice } =
     useContext(CartContext);
 
-  const [isEmpty, setIsEmpty] = useState(numberOfItems < 1);
-
-  console.log(numberOfItems);
+  const [isEmpty, setIsEmpty] = useState(cartItems?.length < 1);
 
   useEffect(() => {
     calculateTotalPrice();
-    setIsEmpty(numberOfItems < 1);
+    setIsEmpty(cartItems?.length < 1);
   }, [cartItems]);
 
   useEffect(() => {
@@ -32,13 +30,13 @@ function ShoppingCart() {
   }
 
   function calculateTotalPrice() {
-    const arr = cartItems.map((item) => {
+    const arr = cartItems?.map((item) => {
       return Number(item.price);
     });
 
     const initialValue = 0;
 
-    const total = arr.reduce((accumulator, currentValue) => {
+    const total = arr?.reduce((accumulator, currentValue) => {
       return accumulator + currentValue;
     }, initialValue);
 
@@ -47,7 +45,7 @@ function ShoppingCart() {
     localStorage.setItem("totalPrice", JSON.stringify(total));
   }
 
-  const displayCartItems = cartItems.map((item, index) => (
+  const displayCartItems = cartItems?.map((item, index) => (
     <CartItem
       id={item._id}
       index={index}
@@ -74,7 +72,7 @@ function ShoppingCart() {
           >
             Place Order
           </button>
-          <button className="delete-all-btn">Delete All Items</button>
+          {/* <button className="delete-all-btn">Delete All Items</button> */}
         </div>
       </aside>
       <div className="  shopping-cart ">
@@ -83,14 +81,6 @@ function ShoppingCart() {
          shopping-list"
         >
           {displayCartItems}
-
-          {/* <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem />
-          <CartItem /> */}
         </ul>
       </div>
     </section>

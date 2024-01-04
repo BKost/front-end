@@ -17,7 +17,6 @@ function UserPage() {
     axios
       .delete("/api/my-profile")
       .then((response) => {
-        console.log(response.data);
         navigate("/");
         setShowDeleteModal(false);
         setIsLoggedIn(false);
@@ -27,7 +26,7 @@ function UserPage() {
 
   return (
     <section className="consistent-padding">
-      <h2 className="text-align-center">User Page</h2>
+      <h2 className="text-align-center">My profile</h2>
       <UserInfo />
       <div className="container delete-account text-align-center">
         <h3>Delete account</h3>

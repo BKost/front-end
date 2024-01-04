@@ -24,8 +24,6 @@ function UserInfo() {
 
         console.log(userData, "user data");
         setProfileInfo((prev) => {
-          console.log(prev);
-
           return { ...userData, password: "", confirm_password: "" };
         });
       })
@@ -128,7 +126,6 @@ function UserInfo() {
                 onChange={handleChange}
                 name="phone"
                 type="tel"
-                defaultValue="0951670272"
                 value={profileInfo?.phone}
               />
             </div>

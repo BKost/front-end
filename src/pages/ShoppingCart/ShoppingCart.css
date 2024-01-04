@@ -25,6 +25,9 @@
   display: flex;
   gap: 1em;
 }
+.place-order-btn {
+  width: 100%;
+}
 
 /* .place-order-btn,
 .delete-all-btn {
