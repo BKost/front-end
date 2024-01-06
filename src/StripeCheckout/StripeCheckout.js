@@ -29,8 +29,11 @@ function StripeCheckout() {
   }, []);
 
   function fetchClientSecret() {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const buyer = JSON.parse(localStorage.getItem("buyer"));
+
     axios
-      .post("/api/payment", { cartItems: [1, 2, 3] })
+      .post("/api/payment", { cartItems: cart, buyer })
       .then((response) => {
         const { secretKey } = response.data;
 

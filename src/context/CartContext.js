@@ -12,6 +12,7 @@ function CartProvider({ children }) {
 
   function storeCartItems() {
     // setNumberOfItems(cartItems.length);
+
     localStorage.setItem("cart", JSON.stringify(cartItems));
   }
 

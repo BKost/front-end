@@ -17,39 +17,28 @@ function ProductDetail() {
     fetchSingleItem();
   }, []);
 
-  useEffect(() => {
-    storeCartItems();
-  }, [addToCart]);
+  // useEffect(() => {
+  //   storeCartItems();
+  // }, [addToCart]);
 
-  function addToCart() {
-    setCartItems((prev) => {
-      return [...prev, itemData];
-    });
+  // function addToCart() {
+  //   setCartItems((prev) => {
+  //     return [...prev, itemData];
+  //   });
+  // }
 
-    // if (cartItems.length === 0) {
-    //   return setCartItems((prev) => {
-    //     return [...prev, { ...itemData, amount: 1 }];
-    //   });
-    // }
-    // const isInCart = cartItems.some((item) => {
-    //   return item._id === itemData._id;
-    // });
-    // if (cartItems.length > 0 && !isInCart) {
-    //   return setCartItems((prev) => {
-    //     return [...prev, { ...itemData, amount: 1 }];
-    //   });
-    // }
-    // if (isInCart) {
-    //   console.log(isInCart);
-    //   const arr = cartItems.map((item) => {
-    //     if (item._id === itemData._id) {
-    //       return { ...item, amount: item.amount + 1 };
-    //     }
-    //   });
-    //   setCartItems(arr);
-    // }
-    // if prodict exists than access the product and add amount to it
-    // if not than push another product to array
+  function addToCartDB() {
+    axios
+      .post("/api/shopping-cart", { itemData })
+      .then((response) => {
+        const { cart } = response.data.shoppingCart;
+        console.log(response);
+        // addToCart();
+        // store shopping cart in local storage
+        localStorage.setItem("cart", JSON.stringify(cart));
+        setCartItems(cart);
+      })
+      .catch((err) => console.log(err));
   }
 
   function fetchSingleItem() {
@@ -89,7 +78,7 @@ function ProductDetail() {
           </div>
           <div className=" product-detail-btns">
             <button
-              onClick={addToCart}
+              onClick={addToCartDB}
               className=" product-detail-btn add-to-cart-btn "
             >
               + Add to cart

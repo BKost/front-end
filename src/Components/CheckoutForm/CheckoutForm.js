@@ -6,6 +6,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
+import axios from "axios";
 import { useEffect, useState } from "react";
 
 function CheckoutForm() {
@@ -16,6 +17,15 @@ function CheckoutForm() {
   const [isLoading, setIsLoading] = useState(false);
 
   // const clientSecret = props.clientSecretKey;
+
+  function sendOrderConfirmationEmail() {
+    const buyerInfo = JSON.parse(localStorage.getItem("buyer"));
+
+    axios
+      .post("/api/payment/email", buyerInfo)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
+  }
 
   useEffect(() => {
     if (!stripe) {
@@ -70,7 +80,12 @@ function CheckoutForm() {
       confirmParams: {
         return_url: "http://localhost:3000/cart/order",
       },
+      // redirect: "if_required",
     });
+
+    // if (!error) {
+    //   return console.log(error);
+    // }
 
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);

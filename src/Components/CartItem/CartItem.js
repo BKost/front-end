@@ -2,6 +2,7 @@ import "./CartItem.css";
 import image from "../../images/product.jpg";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import axios from "axios";
 
 function CartItem(props) {
   const { cartItems, setCartItems, setNumberOfItems } = useContext(CartContext);
@@ -14,6 +15,15 @@ function CartItem(props) {
     setCartItems(filteredItems);
 
     localStorage.setItem("cart", JSON.stringify(filteredItems));
+
+    deleteFromCartDB();
+  }
+
+  function deleteFromCartDB() {
+    axios
+      .delete(`/api/shopping-cart/${props.cartItemId}`)
+      .then((response) => console.log(response))
+      .catch((err) => console.log(err));
   }
 
   return (

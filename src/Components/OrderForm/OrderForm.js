@@ -50,7 +50,7 @@ function OrderForm(props) {
 
     // const formDataObj = Object.fromEntries(formData);
 
-    // localStorage.setItem("buyer", JSON.stringify(buyerInfo));
+    localStorage.setItem("buyer", JSON.stringify(buyerInfo));
 
     props.setRenderCheckout(true);
 
