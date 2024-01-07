@@ -21,7 +21,7 @@ function CartItem(props) {
 
   function deleteFromCartDB() {
     axios
-      .delete(`/api/shopping-cart/${props.cartItemId}`)
+      .delete(`/api/shopping-cart/delete-item/${props.cartItemId}`)
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
   }

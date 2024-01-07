@@ -23,19 +23,7 @@ function ProductCard(props) {
       <p className="price-tag">
         Price: <span className="price-span">$ {props.price}</span>{" "}
       </p>
-      <p>
-        {props.description}
-        {/* Lorem ipsum, dolor sit amet consectetur adipisicing elit. Delectus nulla
-        laboriosam odio provident quod, eum tempora atque quae? Necessitatibus
-        deleniti corporis, quae ex porro eveniet officia omnis numquam officiis
-        totam? Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-        Delectus nulla laboriosam odio provident quod, eum tempora atque quae?
-        Necessitatibus deleniti corporis, quae ex porro eveniet officia omnis
-        numquam officiis totam? Lorem ipsum, dolor sit amet consectetur
-        adipisicing elit. Delectus nulla laboriosam odio provident quod, eum
-        tempora atque quae? Necessitatibus deleniti corporis, quae ex porro
-        eveniet officia omnis numquam officiis totam? */}
-      </p>
+      <p>{props.description}</p>
       <Link className="details-btn blue-button" to={props.id}>
         Details
       </Link>

@@ -51,8 +51,9 @@ function OrderForm(props) {
     // const formDataObj = Object.fromEntries(formData);
 
     localStorage.setItem("buyer", JSON.stringify(buyerInfo));
+    navigate("/cart/order/payment");
 
-    props.setRenderCheckout(true);
+    // props.setRenderCheckout(true);
 
     // const formData = new FormData(formRef.current);
 
@@ -75,6 +76,7 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="first_name">First Name</label>
               <input
+                required
                 onChange={handleChange}
                 name="first_name"
                 type="text"
@@ -87,6 +89,7 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="last_name">Last Name</label>
               <input
+                required
                 onChange={handleChange}
                 name="last_name"
                 type="text"
@@ -99,6 +102,7 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="phone">Phone number</label>
               <input
+                required
                 onChange={handleChange}
                 name="phone"
                 type="tel"
@@ -111,6 +115,7 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="email">E-mail</label>
               <input
+                required
                 onChange={handleChange}
                 name="email"
                 type="text"
@@ -128,6 +133,7 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="street_name">Street name</label>
               <input
+                required
                 onChange={handleChangeAddress}
                 name="street_name"
                 type="text"
@@ -139,6 +145,7 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="street_number">Street number</label>
               <input
+                required
                 onChange={handleChangeAddress}
                 name="street_number"
                 type="text"
@@ -151,6 +158,7 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="city">City</label>
               <input
+                required
                 onChange={handleChangeAddress}
                 name="city"
                 type="text"
@@ -163,6 +171,7 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="postal_code">Postal code</label>
               <input
+                required
                 onChange={handleChangeAddress}
                 name="postal_code"
                 type="text"
@@ -173,9 +182,12 @@ function OrderForm(props) {
         </ul>
       </section>
 
-      <button onClick={getUserInfo} className="blue-button" type="submit">
-        Use saved contact and address
-      </button>
+      {isLoggedIn && (
+        <button onClick={getUserInfo} className="blue-button" type="submit">
+          Use saved contact and address
+        </button>
+      )}
+
       <button
         disabled={!buyerInfo}
         onClick={handleSubmit}

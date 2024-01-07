@@ -9,16 +9,17 @@ function OrderPage() {
   // Contact: address, phone, email
   // I agree field
 
-  const [renderCheckout, setRenderCheckout] = useState();
+  // const [renderCheckout, setRenderCheckout] = useState();
   return (
     <section className="consistent-padding ">
       <h2 className="text-align-center">Order Page</h2>
 
-      {renderCheckout ? (
+      {/* {renderCheckout ? (
         <StripeCheckout />
       ) : (
         <OrderForm setRenderCheckout={setRenderCheckout} />
-      )}
+      )} */}
+      <OrderForm />
     </section>
   );
 }

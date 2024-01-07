@@ -1,4 +1,5 @@
-// import "./CheckoutForm.css";
+import { CircularProgress } from "@mui/material";
+import "./CheckoutForm.css";
 
 import {
   AddressElement,
@@ -7,7 +8,8 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../../context/CartContext";
 
 function CheckoutForm() {
   const stripe = useStripe();
@@ -16,15 +18,37 @@ function CheckoutForm() {
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const clientSecret = props.clientSecretKey;
+  const { setCartItems } = useContext(CartContext);
 
-  function sendOrderConfirmationEmail() {
+  function sendOrderConfirmationEmail(amount) {
     const buyerInfo = JSON.parse(localStorage.getItem("buyer"));
+    // const buyerInfo = localStorage.getItem("buyer");
+
+    console.log(buyerInfo);
+
+    const orderData = { buyerInfo, amount: amount };
 
     axios
-      .post("/api/payment/email", buyerInfo)
+      .post("/api/payment/email", orderData)
       .then((response) => console.log(response))
       .catch((err) => console.log(err));
+  }
+
+  function deleteCartDB() {
+    axios
+      .delete("/api/shopping-cart/delete-cart")
+      .then((response) => {
+        console.log(response);
+        resetStorage();
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function resetStorage() {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("buyer");
+    localStorage.removeItem("total");
+    setCartItems([]);
   }
 
   useEffect(() => {
@@ -49,7 +73,10 @@ function CheckoutForm() {
       .then(({ paymentIntent }) => {
         switch (paymentIntent.status) {
           case "succeeded":
+            // console.log(paymentIntent.amount);
             setMessage("Payment succeeded!");
+            deleteCartDB();
+            sendOrderConfirmationEmail(paymentIntent.amount);
             break;
           case "processing":
             setMessage("Your payment is processing.");
@@ -78,14 +105,15 @@ function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/cart/order",
+        return_url: "http://localhost:3000/cart/order/payment",
       },
       // redirect: "if_required",
     });
 
-    // if (!error) {
-    //   return console.log(error);
-    // }
+    if (error) {
+      console.log(error);
+      return setMessage("An unexpected error occurred.");
+    }
 
     if (error.type === "card_error" || error.type === "validation_error") {
       setMessage(error.message);
@@ -99,14 +127,16 @@ function CheckoutForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="">
-      <h3>{message}</h3>
+    <form className="payment-form" id="payment-form" onSubmit={handleSubmit}>
+      <h3 className="text-align-center">{message}</h3>
+
       <PaymentElement id="payment-element" />
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
       </button>
+      {message && <div id="payment-message">{message}</div>}
     </form>
   );
 }

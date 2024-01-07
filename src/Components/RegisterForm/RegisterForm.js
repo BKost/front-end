@@ -85,7 +85,7 @@ function RegisterForm() {
               <label htmlFor="user_name_register">User name *</label>
               <input
                 // id="user_name_register"
-                required
+                // required
                 name="user_name"
                 type="text"
                 defaultValue="Bohdan"
@@ -102,7 +102,7 @@ function RegisterForm() {
             <div className="input-container">
               <label htmlFor="first_name">First Name *</label>
               <input
-                required
+                // required
                 id="first_name"
                 name="first_name"
                 type="text"
@@ -115,7 +115,7 @@ function RegisterForm() {
               {" "}
               <label htmlFor="last_name">Last Name *</label>
               <input
-                required
+                // required
                 name="last_name"
                 type="text"
                 defaultValue="Kosturik"
@@ -127,7 +127,7 @@ function RegisterForm() {
               {" "}
               <label htmlFor="phone">Phone number *</label>
               <input
-                required
+                // required
                 name="phone"
                 type="tel"
                 defaultValue="0951670272"
@@ -139,7 +139,7 @@ function RegisterForm() {
               {" "}
               <label htmlFor="email">E-mail *</label>
               <input
-                required
+                // required
                 name="email"
                 type="text"
                 defaultValue="kosturik.bohdan@gmail.com"
@@ -156,7 +156,7 @@ function RegisterForm() {
             <div className="input-container">
               <label htmlFor="password">Password *</label>
               <input
-                required
+                // required
                 name="password"
                 type="text"
                 defaultValue="12345"
@@ -167,7 +167,7 @@ function RegisterForm() {
             <div className="input-container">
               <label htmlFor="confirm_password">Confirm password *</label>
               <input
-                required
+                // required
                 name="confirm_password"
                 type="text"
                 defaultValue="12345"

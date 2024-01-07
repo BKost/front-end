@@ -13,6 +13,18 @@ function ShoppingCart() {
 
   const [isEmpty, setIsEmpty] = useState(cartItems?.length < 1);
 
+  const cartIdCookie = document.cookie.includes("cartId");
+
+  console.log(cartIdCookie);
+
+  useEffect(() => {
+    console.log(cartIdCookie);
+    if (!cartIdCookie) {
+      setCartItems([]);
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
+
   useEffect(() => {
     calculateTotalPrice();
     setIsEmpty(cartItems?.length < 1);
@@ -42,7 +54,7 @@ function ShoppingCart() {
 
     setTotalPrice(total);
 
-    localStorage.setItem("totalPrice", JSON.stringify(total));
+    // localStorage.setItem("totalPrice", JSON.stringify(total));
   }
 
   const displayCartItems = cartItems?.map((item, index) => (

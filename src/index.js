@@ -14,6 +14,7 @@ import MyListings from "./pages/MyListings/MyListings";
 import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
 import { CartProvider } from "./context/CartContext";
 import UserProvider from "./context/UserContext";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,10 @@ const router = createBrowserRouter([
       {
         path: "cart/order",
         element: <OrderPage />,
+      },
+      {
+        path: "cart/order/payment",
+        element: <CheckoutPage />,
       },
     ],
   },

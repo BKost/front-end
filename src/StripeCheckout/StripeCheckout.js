@@ -5,6 +5,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { useEffect, useState } from "react";
 import CheckoutForm from "../Components/CheckoutForm/CheckoutForm";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -16,12 +17,16 @@ function StripeCheckout() {
 
   const appearence = {
     theme: "stripe",
+    variables: {
+      colorPrimary: "#e19b05",
+      colorText: "#545454",
+    },
   };
 
   const options = {
     // passing the client secret obtained from the server
     clientSecret,
-    // appearence,
+    appearence,
   };
 
   useEffect(() => {
@@ -37,7 +42,6 @@ function StripeCheckout() {
       .then((response) => {
         const { secretKey } = response.data;
 
-        console.log(response.data);
         setClientSecret(secretKey);
       })
       .catch((err) => console.log(err));
@@ -45,10 +49,17 @@ function StripeCheckout() {
 
   return (
     <div className="container order-payment  ">
-      {clientSecret && (
+      {/* {clientSecret && (
         <Elements stripe={stripePromise} options={options}>
           <CheckoutForm />
         </Elements>
+      )} */}
+      {clientSecret ? (
+        <Elements stripe={stripePromise} options={options}>
+          <CheckoutForm />
+        </Elements>
+      ) : (
+        <CircularProgress style={{ backgroundColor: "none" }} />
       )}
     </div>
   );

@@ -57,7 +57,7 @@ function LoginForm() {
               {" "}
               <label htmlFor="email">E-mail *</label>
               <input
-                required
+                // required
                 name="email"
                 type="text"
                 defaultValue="kosturik.bohdan@gmail.com"
@@ -69,7 +69,7 @@ function LoginForm() {
               {" "}
               <label htmlFor="password">Password *</label>
               <input
-                required
+                // required
                 name="password"
                 type="text"
                 defaultValue="12345"

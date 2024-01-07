@@ -4,6 +4,7 @@ import "./CategoryPage.css";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 function CategoryPage() {
   const { category } = useParams();

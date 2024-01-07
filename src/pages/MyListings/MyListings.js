@@ -19,6 +19,8 @@ function MyListings() {
       .then((response) => {
         const { listings } = response.data;
 
+        console.log(listings);
+
         setListingsArr(listings.reverse());
       })
       .catch((err) => console.log(err));
