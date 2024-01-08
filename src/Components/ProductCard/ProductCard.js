@@ -1,14 +1,7 @@
 import "./ProductCard.css";
-import image from "../../images/product.jpg";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function ProductCard(props) {
-  // const { category, productId } = useParams();
-
-  // const url = `/${category}/gg`;
-
-  // console.log(url);
-
   return (
     <article className="container product-card">
       <img
@@ -18,7 +11,7 @@ function ProductCard(props) {
         height="2"
         width="3"
       />
-      <time className="date-text">23/11/22</time>
+      {/* <time className="date-text">23/11/22</time> */}
       <h3>{props.title}</h3>
       <p className="price-tag">
         Price: <span className="price-span">$ {props.price}</span>{" "}

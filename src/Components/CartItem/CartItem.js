@@ -1,11 +1,10 @@
 import "./CartItem.css";
-import image from "../../images/product.jpg";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import axios from "axios";
 
 function CartItem(props) {
-  const { cartItems, setCartItems, setNumberOfItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useContext(CartContext);
 
   function deleteCartItem() {
     const filteredItems = cartItems.filter((item, index) => {

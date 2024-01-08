@@ -15,6 +15,7 @@ import MyPostDetail from "./pages/MyPostDetail/MyPostDetail";
 import { CartProvider } from "./context/CartContext";
 import UserProvider from "./context/UserContext";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -23,11 +24,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: (
-          <section className="consistent-padding">
-            <h2 className="text-align-center ">Home</h2>
-          </section>
-        ),
+        element: <AboutPage />,
       },
 
       {
@@ -46,7 +43,6 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
-        // action: registerAction,
       },
       {
         path: "user-page",
@@ -74,14 +70,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/electronics",
-  //   element: <CategoryPage />,
-  // },
-  // {
-  //   path: "/register",
-  //   element: <h1 style={{ paddingTop: "5em" }}>Register</h1>,
-  // },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

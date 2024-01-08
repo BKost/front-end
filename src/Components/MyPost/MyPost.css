@@ -1,6 +1,5 @@
 .my-post {
   flex: 0 0 30%;
-  /* height: fit-content; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,7 +14,6 @@
 }
 
 .my-post-btn {
-  /* display: inline-block; */
   width: 100%;
 }
 
@@ -31,7 +29,7 @@
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .my-post {
     flex: 0 0 100%;
   }

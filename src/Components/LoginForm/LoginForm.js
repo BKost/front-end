@@ -1,5 +1,4 @@
 import "./LoginForm.css";
-import customFetch from "../../utils/customFetch";
 import { useRef } from "react";
 import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
@@ -7,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import useErrorMessage from "../../hooks/useErrorMessage";
 
 function LoginForm() {
-  const { setIsLoggedIn, isLoggedIn } = useUserContext();
+  const { setIsLoggedIn } = useUserContext();
   const formRef = useRef(null);
 
   const navigate = useNavigate();
@@ -24,21 +23,17 @@ function LoginForm() {
 
     try {
       const response = await axios.post("/api/login", formDataObj);
-      // const { user_name } = response.data;
+      const { msg } = response.data;
+
+      console.log(msg);
+
       setIsLoggedIn(true);
-      // localStorage.setItem("userName", JSON.stringify({ user_name }));
-      navigate("/");
-      // console.log(response);
+      navigate("/my-listings");
     } catch (error) {
       const { msg } = error.response.data;
       setErrorMessage(msg);
-      // console.log(errData);
+      console.log(error);
     }
-
-    // Create object with address:{} property
-    // Send to register
-
-    // console.log(formDataObj);
   }
 
   return (
@@ -60,7 +55,6 @@ function LoginForm() {
                 // required
                 name="email"
                 type="text"
-                defaultValue="kosturik.bohdan@gmail.com"
               />
             </div>
           </li>
@@ -72,7 +66,6 @@ function LoginForm() {
                 // required
                 name="password"
                 type="text"
-                defaultValue="12345"
               />
             </div>
           </li>

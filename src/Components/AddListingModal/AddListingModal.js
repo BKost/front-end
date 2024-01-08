@@ -1,10 +1,10 @@
 import "./AddListingModal.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import useErrorMessage from "../../hooks/useErrorMessage";
 
 function AddListingModal(props) {
-  const { dialogOpened, setDialogOpened } = props.state;
+  const { setDialogOpened } = props.state;
   const [uploadImageSrc, setUploadImageSrc] = useState(null);
   const { setErrorMessage, ErrorMessageElement } = useErrorMessage({
     marginTop: "1em",
@@ -24,8 +24,6 @@ function AddListingModal(props) {
     };
 
     reader.readAsDataURL(file);
-
-    // console.log(file, reader);
   }
 
   async function handleFormSubmit(event) {
@@ -40,10 +38,8 @@ function AddListingModal(props) {
     };
 
     try {
-      // send data to server
       const response = await axios.post("/api/my-listings", formData, config);
       console.log(response);
-      // close dialog if successful
       closeDialog();
       props.fetchListings();
     } catch (error) {
@@ -64,7 +60,6 @@ function AddListingModal(props) {
         className=" add-listing-dialog-container"
         ref={formRef}
       >
-        {/* <h3>New listing</h3> */}
         <div className="add-listing-ul-container">
           <ul className="container add-listing-ul-2">
             <li className="input-container">

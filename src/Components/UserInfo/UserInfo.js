@@ -3,8 +3,6 @@ import "./UserInfo.css";
 import { useEffect, useRef, useState } from "react";
 
 function UserInfo() {
-  // fetch user profile info
-
   const formRef = useRef(null);
 
   const [disabled, setDisabled] = useState(true);
@@ -14,15 +12,12 @@ function UserInfo() {
     fetchUserInfo();
   }, []);
 
-  // console.log(profileInfo);
-
   function fetchUserInfo() {
     axios
       .get("/api/my-profile")
       .then((response) => {
         const { userData } = response.data;
 
-        console.log(userData, "user data");
         setProfileInfo((prev) => {
           return { ...userData, password: "", confirm_password: "" };
         });
@@ -37,11 +32,8 @@ function UserInfo() {
       .patch("/api/my-profile", profileInfo)
       .then((response) => {
         setDisabled(true);
-        console.log(response);
       })
       .catch((err) => console.log(err));
-
-    // console.log(profileInfo);
   }
 
   function handleChange(event) {
@@ -58,13 +50,10 @@ function UserInfo() {
     setProfileInfo((prev) => {
       return { ...prev, address: { ...prev.address, [name]: value } };
     });
-
-    // console.log(name, value);
   }
 
   function edit(event) {
     event.preventDefault();
-    // console.log("submit");
     setDisabled(false);
   }
 

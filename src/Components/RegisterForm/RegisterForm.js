@@ -1,18 +1,15 @@
 import "./RegisterForm.css";
 
-// import { Form } from "react-router-dom";
-import customFetch from "../../utils/customFetch";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useErrorMessage from "../../hooks/useErrorMessage";
+import axios from "axios";
 
 function RegisterForm() {
   const formRef = useRef(null);
   const navigate = useNavigate(null);
 
   const { setErrorMessage, ErrorMessageElement } = useErrorMessage();
-
-  // const [errorMessage, setErrorMessage] = useState("");
 
   async function handleFormSubmit(event) {
     event.preventDefault();
@@ -53,7 +50,7 @@ function RegisterForm() {
     };
 
     try {
-      const response = await customFetch.post("/register", data);
+      const response = await axios.post("/register", data);
       console.log(response);
 
       navigate("/login");
@@ -64,9 +61,6 @@ function RegisterForm() {
 
       console.log(msg);
     }
-
-    // Create object with address:{} property
-    // Send to register
   }
   return (
     <form
@@ -84,7 +78,6 @@ function RegisterForm() {
             <div className="input-container">
               <label htmlFor="user_name_register">User name *</label>
               <input
-                // id="user_name_register"
                 // required
                 name="user_name"
                 type="text"

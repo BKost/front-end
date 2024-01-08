@@ -1,17 +1,16 @@
-import { useState } from "react";
 import "./LogOutModal.css";
 import axios from "axios";
 import { useUserContext } from "../../context/UserContext";
 
 function LogOutModal() {
   const { setShowLogout, setIsLoggedIn } = useUserContext();
-  // const [showDialog, setShowDialog] = useState(false);
 
   function logOut() {
     axios
       .get("/api/logout")
       .then((response) => {
-        console.log(response);
+        const { msg } = response.data;
+        console.log(msg);
         setShowLogout(false);
         setIsLoggedIn(false);
       })

@@ -1,16 +1,19 @@
 .cart-item {
   flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cart-item-image {
-  height: auto;
+  height: 250px;
+  margin-bottom: 1em;
   width: 100%;
   border-radius: var(--b-rad-image);
   object-fit: cover;
 }
 
 .cart-item-btn {
-  /* display: inline-block; */
   width: 100%;
 }
 

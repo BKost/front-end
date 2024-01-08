@@ -5,8 +5,6 @@ import { useUserContext } from "../../context/UserContext";
 import axios from "axios";
 
 function OrderForm(props) {
-  // if user logged in, fill the form from user info
-
   const { isLoggedIn } = useUserContext();
 
   const formRef = useRef(null);
@@ -29,8 +27,6 @@ function OrderForm(props) {
     setBuyerInfo((prev) => {
       return { ...prev, address: { ...prev.address, [name]: value } };
     });
-
-    // console.log(name, value);
   }
 
   function getUserInfo() {
@@ -46,24 +42,13 @@ function OrderForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // const formData = new FormData(formRef.current);
-
-    // const formDataObj = Object.fromEntries(formData);
-
     localStorage.setItem("buyer", JSON.stringify(buyerInfo));
     navigate("/cart/order/payment");
-
-    // props.setRenderCheckout(true);
-
-    // const formData = new FormData(formRef.current);
-
-    // console.log(Object.fromEntries(formData));
   }
 
   return (
     <form
       ref={formRef}
-      // onSubmit={handleSubmit}
       onSubmit={(e) => e.preventDefault()}
       className="container order-form "
       action="POST"

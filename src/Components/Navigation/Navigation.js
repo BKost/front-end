@@ -4,26 +4,22 @@ import "./Navigation.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { NavLink, useLocation, useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
 import { useUserContext } from "../../context/UserContext";
-import axios from "axios";
 
 function Navigation() {
   const { screenWidth } = useScreenWidth();
   const [categoriesHover, setCategoriesHover] = useState(false);
   const [menuOpened, setMenuOpened] = useState(false);
 
-  const { cartItems, numberOfItems } = useContext(CartContext);
+  const { numberOfItems } = useContext(CartContext);
   const { setShowLogout } = useUserContext();
 
   const { category: categoryParam } = useParams();
   const { pathname } = useLocation();
 
   const { isLoggedIn } = useUserContext();
-
-  // const numberOfItems = cartItems.length;
 
   const categories = [
     {
@@ -61,8 +57,6 @@ function Navigation() {
     } else {
       return "";
     }
-
-    // return "nav-active";
   }
 
   useEffect(() => {
@@ -72,7 +66,6 @@ function Navigation() {
   function closeNavigation() {
     setMenuOpened(false);
     setCategoriesHover(false);
-    // setMenuOpened(false);
   }
 
   return (
@@ -84,13 +77,16 @@ function Navigation() {
         >
           <div className="ul-container">
             <ul className="ul-center">
+              <li>
+                <NavLink className={`${addActiveClass("/")}`} to={"/"}>
+                  About
+                </NavLink>
+              </li>
               <li
                 className="cursor-pointer"
-                // onMouseLeave={() => setCategoriesHover(false)}
                 onMouseEnter={() => setCategoriesHover(true)}
               >
                 Categories
-                {/* <KeyboardArrowDownIcon fontSize="large" />{" "} */}
               </li>
             </ul>
             <ul className="ul-right">
@@ -147,7 +143,6 @@ function Navigation() {
                 <NavLink to={"/cart"} aria-label="View shopping cart, 2 items">
                   <div className="cart-nav">
                     <ShoppingCartIcon fontSize="large" /> {numberOfItems}
-                    {/* <KeyboardArrowDownIcon fontSize="large" /> */}
                   </div>
                 </NavLink>
               </li>
@@ -177,7 +172,6 @@ function Navigation() {
                 fontSize="large"
                 style={{
                   marginLeft: "auto",
-                  // justifySelf: "flex-end",
                 }}
               />
             )}
@@ -255,7 +249,6 @@ function Navigation() {
                 <p>Shopping cart</p>
                 <div className="cart-nav cart-nav-mobile">
                   <ShoppingCartIcon fontSize="large" /> {numberOfItems}
-                  {/* <KeyboardArrowDownIcon fontSize="large" /> */}
                 </div>
               </NavLink>{" "}
             </li>

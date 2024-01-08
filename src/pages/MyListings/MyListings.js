@@ -1,7 +1,7 @@
 import "./MyListings.css";
 import MyPost from "../../Components/MyPost/MyPost";
 import AddListingModal from "../../Components/AddListingModal/AddListingModal";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -18,8 +18,6 @@ function MyListings() {
       .get("/api/my-listings")
       .then((response) => {
         const { listings } = response.data;
-
-        console.log(listings);
 
         setListingsArr(listings.reverse());
       })
@@ -44,13 +42,11 @@ function MyListings() {
 
   function addNewListing() {
     openDialog();
-    // open dialog
   }
 
   return (
     <section className="consistent-padding">
       <h2 className="text-align-center">My listings</h2>
-      {/* <div className="  shopping-cart "> */}
 
       <button onClick={addNewListing} className="add-listing-btn blue-button">
         + Add new listing
@@ -68,8 +64,6 @@ function MyListings() {
           fetchListings={fetchMyListings}
         />
       )}
-
-      {/* </div> */}
     </section>
   );
 }

@@ -1,6 +1,5 @@
 import "./MyPost.css";
 
-// import image from "../../images/product.jpg";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

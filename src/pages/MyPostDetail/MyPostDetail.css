@@ -1,18 +1,12 @@
 .my-post-detail-container {
   margin: 0 auto;
   max-width: 1000px;
-
-  /* border: 1px solid white; */
-  /* padding: var(--sides-padding);
-  padding-top: var(--container-padding-top);
-  padding-bottom: var(--container-padding-bottom); */
 }
 
 .my-post-image-and-cta {
   margin-bottom: 1em;
   display: flex;
   gap: 1em;
-  /* width: 100%; */
 }
 
 .my-post-detail-cta-container {
@@ -48,13 +42,11 @@
 
   .my-post-image-container {
     width: 100%;
-    /* height: fit-content; */
   }
 }
 
 .my-post-detail-image {
   width: 100%;
-  height: auto;
   height: 100%;
   border-radius: var(--b-rad-image);
   object-fit: cover;
@@ -62,10 +54,8 @@
 
 .user-and-date {
   display: flex;
-  /* flex-direction: column; */
   gap: 1em;
   margin-bottom: 1em;
-  /* justify-content: space-between; */
 }
 
 .my-post-detail-btns {

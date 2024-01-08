@@ -1,0 +1,9 @@
+.about-container {
+  max-width: fit-content;
+  margin: 0 auto;
+}
+
+.about-paragraph {
+  max-width: 80ch;
+  text-align: center;
+}

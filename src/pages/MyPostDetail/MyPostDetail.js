@@ -1,6 +1,5 @@
 import "./MyPostDetail.css";
 
-import image from "../../images/product.jpg";
 import { useParams } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";

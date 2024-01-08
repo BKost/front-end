@@ -1,9 +1,6 @@
-import { useState } from "react";
 import "./DeleteAccountModal.css";
 
 function DeleteAccountModal(props) {
-  // const [showDialog, setShowDialog] = useState(false);
-
   return (
     <dialog className="">
       <div className="container delete-account-dialog-container">

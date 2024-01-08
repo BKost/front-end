@@ -3,13 +3,10 @@
   font-size: var(--paragraph-text);
   display: flex;
   align-items: center;
-  /* background-color: #031016; */
-  /* height: 80px; */
+
   color: var(--white-color);
   width: 100%;
   position: fixed;
-  /* position: sticky; */
-  /* justify-content: center; */
 }
 
 .ul-container {
@@ -26,13 +23,11 @@
   display: flex;
   align-items: center;
   gap: 1em;
-
-  /* border: 1px solid white; */
 }
 
 .ul-container ul > li {
   padding: 0.5em 1em;
-  /* border: 1px solid white; */
+
   display: flex;
   align-items: center;
   gap: 1em;
@@ -61,7 +56,6 @@
 }
 
 .categories-container {
-  /* height: 80px; */
   width: 100%;
   background-color: #82c0e1;
   padding: 1.5em 0 0.5em 0;
@@ -71,7 +65,6 @@
   z-index: 0;
   visibility: hidden;
   transition: all 0.2s ease-out;
-  /* transform: translateY(70%); */
 }
 
 .categories-container-opened {
@@ -85,7 +78,6 @@
   display: flex;
   justify-content: center;
   gap: 1em;
-  /* background-color: orange; */
 }
 
 .categories-li {
@@ -98,18 +90,7 @@
 .categories-li:hover {
   transition: all 0.2s ease-in;
   background-color: #c2eaff;
-  /* cursor: pointer; */
 }
-
-/* .categories-active-link {
-  color: var(--black-1);
-
-  padding: 0.5em 1em;
-  border-radius: var(--b-rad-btn);
-
-  transition: all 0.2s ease-in;
-  background-color: #c2eaff;
-} */
 
 .nav-active {
   text-decoration: underline;
@@ -141,7 +122,7 @@
 
 .menu-icons {
   width: 100%;
-  /* border: 1px solid white; */
+
   display: flex;
   justify-content: flex-end;
 }
@@ -151,23 +132,8 @@
   z-index: 6;
 }
 
-.menu-icon-closed {
-}
-
 .close {
   display: none;
-}
-
-.mobile-navigation-opened {
-}
-
-.mobile-ul {
-  /* display: flex;s
-  flex-direction: column;
-  margin-top: 1em; */
-  /* display: none; */
-
-  /* gap: 1em; */
 }
 
 .mobile-ul {
@@ -208,7 +174,6 @@
 
 .cart-nav-mobile {
   justify-content: center;
-  /* background-color: #031016; */
   width: fit-content;
   margin: 0 auto;
 }
@@ -235,7 +200,6 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  /* border-radius: 10px; */
 }
 .categories-ul-mobile > li {
   text-align: center;
@@ -246,7 +210,6 @@
 .touch-to-close {
   height: 100vh;
   width: 100vw;
-  /* background-color: aqua; */
   position: absolute;
   right: 0;
   top: 0;

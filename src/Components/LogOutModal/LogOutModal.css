@@ -1,6 +1,6 @@
 .dialog-container {
   height: fit-content;
-  margin-top: 10%;
+  margin: auto 0;
 }
 
 .dialog-btns {

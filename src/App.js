@@ -6,7 +6,7 @@ import LogOutModal from "./Components/LogOutModal/LogOutModal";
 import { useUserContext } from "./context/UserContext";
 
 function App() {
-  const { showLogout, setShowLogout } = useUserContext();
+  const { showLogout } = useUserContext();
 
   return (
     <main className="App">

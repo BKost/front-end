@@ -1,8 +1,6 @@
-import { CircularProgress } from "@mui/material";
 import "./CheckoutForm.css";
 
 import {
-  AddressElement,
   PaymentElement,
   useElements,
   useStripe,
@@ -22,7 +20,6 @@ function CheckoutForm() {
 
   function sendOrderConfirmationEmail(amount) {
     const buyerInfo = JSON.parse(localStorage.getItem("buyer"));
-    // const buyerInfo = localStorage.getItem("buyer");
 
     console.log(buyerInfo);
 
@@ -73,7 +70,6 @@ function CheckoutForm() {
       .then(({ paymentIntent }) => {
         switch (paymentIntent.status) {
           case "succeeded":
-            // console.log(paymentIntent.amount);
             setMessage("Payment succeeded!");
             deleteCartDB();
             sendOrderConfirmationEmail(paymentIntent.amount);
@@ -107,7 +103,6 @@ function CheckoutForm() {
       confirmParams: {
         return_url: "http://localhost:3000/cart/order/payment",
       },
-      // redirect: "if_required",
     });
 
     if (error) {

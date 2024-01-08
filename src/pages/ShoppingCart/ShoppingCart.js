@@ -1,5 +1,4 @@
 import "./ShoppingCart.css";
-import image from "../../images/product.jpg";
 import CartItem from "../../Components/CartItem/CartItem";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
@@ -37,8 +36,6 @@ function ShoppingCart() {
   function getCartItemsFromStorage() {
     const items = JSON.parse(localStorage.getItem("cart"));
     setCartItems(items);
-
-    // console.log(items, "From Storage");
   }
 
   function calculateTotalPrice() {
@@ -53,8 +50,6 @@ function ShoppingCart() {
     }, initialValue);
 
     setTotalPrice(total);
-
-    // localStorage.setItem("totalPrice", JSON.stringify(total));
   }
 
   const displayCartItems = cartItems?.map((item, index) => (

@@ -1,19 +1,8 @@
-.category-page {
-  /* text-align: center; */
-  min-height: 150vh;
-  /* margin: var(--sides-padding);
-  padding-top: var(--container-padding-top);
-  padding-bottom: var(--container-padding-bottom); */
-  /* border: 1px solid black; */
-}
-
 .products-container {
   display: flex;
   justify-content: center;
-  /* align-items: center; */
   gap: 1.5em;
   align-items: center;
   flex-wrap: wrap;
   margin: 0 auto;
-  /* border: 1px solid white; */
 }
