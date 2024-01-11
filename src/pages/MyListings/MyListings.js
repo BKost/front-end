@@ -28,6 +28,7 @@ function MyListings() {
     return (
       <MyPost
         listingId={obj._id}
+        key={`MyPost-${obj._id}`}
         title={obj.title}
         price={obj.price}
         imageSrc={obj.image}

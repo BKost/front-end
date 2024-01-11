@@ -55,6 +55,7 @@ function ShoppingCart() {
   const displayCartItems = cartItems?.map((item, index) => (
     <CartItem
       id={item._id}
+      key={`CartItem-${item._id}`}
       cartItemId={item.cartItemId}
       index={index}
       title={item.title}

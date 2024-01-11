@@ -4,7 +4,6 @@ import "./CategoryPage.css";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
 
 function CategoryPage() {
   const { category } = useParams();
@@ -20,7 +19,6 @@ function CategoryPage() {
       .get(`/api/items/categories/${category}`)
       .then((response) => {
         const { itemsArr } = response.data;
-        console.log(itemsArr);
         setCategoryItems(itemsArr);
       })
       .catch((err) => console.log(err));
@@ -32,6 +30,7 @@ function CategoryPage() {
       price={item.price}
       image={item.image}
       id={item._id}
+      key={`ProductCard-${item._id}`}
       description={item.description}
     />
   ));
@@ -39,14 +38,7 @@ function CategoryPage() {
   return (
     <section className=" consistent-padding category-page">
       <h2 className="text-align-center">{`${category}`}</h2>
-      <div className="products-container">
-        {displayItems}
-        {/* <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard /> */}
-      </div>
+      <div className="products-container">{displayItems}</div>
     </section>
   );
 }
