@@ -101,7 +101,8 @@ function CheckoutForm() {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: "http://localhost:3000/cart/order/payment",
+        return_url:
+          "https://secret-brushlands-05503-5bd21a253d4c.herokuapp.com/cart/order/payment",
       },
     });
 

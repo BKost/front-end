@@ -25,6 +25,7 @@ function MyPostDetail() {
         } = response;
 
         setListingData(singleListing);
+
         // console.log(response);
       })
       .catch((err) => console.log(err));

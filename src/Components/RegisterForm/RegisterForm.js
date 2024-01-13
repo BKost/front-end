@@ -13,7 +13,6 @@ function RegisterForm() {
 
   async function handleFormSubmit(event) {
     event.preventDefault();
-    console.log(formRef.current);
 
     const formData = new FormData(formRef.current);
 
@@ -50,7 +49,7 @@ function RegisterForm() {
     };
 
     try {
-      const response = await axios.post("/register", data);
+      const response = await axios.post("/api/register", data);
       console.log(response);
 
       navigate("/login");
