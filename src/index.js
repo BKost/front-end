@@ -16,11 +16,13 @@ import { CartProvider } from "./context/CartContext";
 import UserProvider from "./context/UserContext";
 import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
     children: [
       {
         index: true,

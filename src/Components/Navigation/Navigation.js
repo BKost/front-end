@@ -40,8 +40,9 @@ function Navigation() {
     },
   ];
 
-  const links = categories.map((item) => (
+  const links = categories.map((item, index) => (
     <NavLink
+      key={`nav-link-key-${index}`}
       className={`categories-li  ${
         categoryParam === item.path && "category-active"
       } `}
@@ -178,6 +179,11 @@ function Navigation() {
           </div>
 
           <ul className={`mobile-ul ${menuOpened && "mobile-ul-opened"} `}>
+            <li>
+              <NavLink className={`${addActiveClass("/")}`} to={"/"}>
+                About
+              </NavLink>
+            </li>
             <li onClick={() => setCategoriesHover(!categoriesHover)}>
               Categories
             </li>

@@ -69,9 +69,9 @@ function ProductDetail() {
             >
               + Add to cart
             </button>
-            <button className=" product-detail-btn purchase-btn ">
+            {/* <button className=" product-detail-btn purchase-btn ">
               Purchase
-            </button>
+            </button> */}
           </div>
         </div>
       </section>

@@ -102,7 +102,8 @@ function CheckoutForm() {
       elements,
       confirmParams: {
         return_url:
-          "https://secret-brushlands-05503-5bd21a253d4c.herokuapp.com/cart/order/payment",
+          // "https://secret-brushlands-05503-5bd21a253d4c.herokuapp.com/cart/order/payment",
+          "http://localhost:3000/cart/order/payment",
       },
     });
 

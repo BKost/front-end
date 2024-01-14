@@ -1,0 +1,22 @@
+.error-page {
+  background-color: var(--background-color);
+  height: 100vh;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.error-container {
+  padding-top: 10%;
+  width: 100%;
+  /* padding: auto 0; */
+}
+.error-message {
+  color: var(--red-1);
+}
+
+.error-ul {
+  display: flex;
+  gap: 3em;
+  justify-content: center;
+  margin-top: 3em;
+}

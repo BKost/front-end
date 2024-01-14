@@ -2,16 +2,28 @@ import { useEffect, useRef, useState } from "react";
 import "./OrderForm.css";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../../context/UserContext";
+import useErrorMessage from "../../hooks/useErrorMessage";
 import axios from "axios";
 
-function OrderForm(props) {
+function OrderForm() {
   const { isLoggedIn } = useUserContext();
 
   const formRef = useRef(null);
 
   const navigate = useNavigate();
+  const { ErrorMessageElement, setErrorMessage } = useErrorMessage();
 
-  const [buyerInfo, setBuyerInfo] = useState("");
+  const [buyerInfo, setBuyerInfo] = useState({
+    email: "",
+    first_name: "",
+    last_name: "",
+    phone: "",
+    address: { city: "", postal_code: "", street_name: "", street_number: "" },
+  });
+
+  useEffect(() => {
+    setErrorMessage("");
+  }, [buyerInfo]);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -42,8 +54,24 @@ function OrderForm(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    localStorage.setItem("buyer", JSON.stringify(buyerInfo));
-    navigate("/cart/order/payment");
+    const { email, first_name, last_name, phone } = buyerInfo;
+    const { city, postal_code, street_name, street_number } = buyerInfo.address;
+
+    if (
+      !email ||
+      !first_name ||
+      !last_name ||
+      !phone ||
+      !city ||
+      !postal_code ||
+      !street_name ||
+      !street_number
+    ) {
+      return setErrorMessage("Please fill out all  fields");
+    } else {
+      localStorage.setItem("buyer", JSON.stringify(buyerInfo));
+      navigate("/cart/order/payment");
+    }
   }
 
   return (
@@ -61,7 +89,6 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="first_name">First Name</label>
               <input
-                required
                 onChange={handleChange}
                 name="first_name"
                 type="text"
@@ -74,7 +101,6 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="last_name">Last Name</label>
               <input
-                required
                 onChange={handleChange}
                 name="last_name"
                 type="text"
@@ -87,7 +113,6 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="phone">Phone number</label>
               <input
-                required
                 onChange={handleChange}
                 name="phone"
                 type="tel"
@@ -100,7 +125,6 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="email">E-mail</label>
               <input
-                required
                 onChange={handleChange}
                 name="email"
                 type="text"
@@ -118,7 +142,6 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="street_name">Street name</label>
               <input
-                required
                 onChange={handleChangeAddress}
                 name="street_name"
                 type="text"
@@ -130,7 +153,6 @@ function OrderForm(props) {
             <div className="input-container">
               <label htmlFor="street_number">Street number</label>
               <input
-                required
                 onChange={handleChangeAddress}
                 name="street_number"
                 type="text"
@@ -143,7 +165,6 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="city">City</label>
               <input
-                required
                 onChange={handleChangeAddress}
                 name="city"
                 type="text"
@@ -156,7 +177,6 @@ function OrderForm(props) {
               {" "}
               <label htmlFor="postal_code">Postal code</label>
               <input
-                required
                 onChange={handleChangeAddress}
                 name="postal_code"
                 type="text"
@@ -166,6 +186,7 @@ function OrderForm(props) {
           </li>
         </ul>
       </section>
+      {ErrorMessageElement}
 
       {isLoggedIn && (
         <button onClick={getUserInfo} className="blue-button" type="submit">
@@ -174,7 +195,7 @@ function OrderForm(props) {
       )}
 
       <button
-        disabled={!buyerInfo}
+        // disabled={disabled}
         onClick={handleSubmit}
         className="yellow-button"
         type="submit"

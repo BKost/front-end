@@ -15,7 +15,17 @@ function AboutPage() {
           User can register, log in to their account, edit their account, post
           products, update and delete posts.
         </p>
-        <p className="about-paragraph"></p>
+        {/* <p className="about-paragraph">
+          Please use
+          <a
+            className="testing-card-link"
+            target="_blank"
+            href="https://stripe.com/docs/testing"
+          >
+            testing cart
+          </a>
+          when it comes to payment.
+        </p> */}
       </div>
     </section>
   );

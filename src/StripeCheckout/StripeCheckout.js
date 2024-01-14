@@ -6,33 +6,37 @@ import { useEffect, useState } from "react";
 import CheckoutForm from "../Components/CheckoutForm/CheckoutForm";
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
+import useErrorMessage from "../hooks/useErrorMessage";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_KEY);
 
 function StripeCheckout() {
   const [clientSecret, setClientSecret] = useState("");
 
-  const appearence = {
-    theme: "stripe",
-    variables: {
-      colorPrimary: "#e19b05",
-      colorText: "#545454",
-    },
-  };
-
   const options = {
     clientSecret,
-    appearence,
   };
 
+  const { ErrorMessageElement, setErrorMessage } = useErrorMessage();
+  const [isData, setIsData] = useState(false);
+
+  const cart = JSON.parse(localStorage.getItem("cart"));
+  const buyer = JSON.parse(localStorage.getItem("buyer"));
+
   useEffect(() => {
-    fetchClientSecret();
+    if (cart && buyer && cart.length > 0) {
+      fetchClientSecret();
+      setIsData(true);
+    } else {
+      setErrorMessage("No items in the cart or buyer information provided");
+    }
+
+    return () => {
+      localStorage.removeItem("buyer");
+    };
   }, []);
 
   function fetchClientSecret() {
-    const cart = JSON.parse(localStorage.getItem("cart"));
-    const buyer = JSON.parse(localStorage.getItem("buyer"));
-
     axios
       .post("/api/payment", { cartItems: cart, buyer })
       .then((response) => {
@@ -49,8 +53,10 @@ function StripeCheckout() {
         <Elements stripe={stripePromise} options={options}>
           <CheckoutForm />
         </Elements>
-      ) : (
+      ) : isData ? (
         <CircularProgress style={{ backgroundColor: "none" }} />
+      ) : (
+        ErrorMessageElement
       )}
     </div>
   );
