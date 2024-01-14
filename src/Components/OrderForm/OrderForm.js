@@ -87,7 +87,7 @@ function OrderForm() {
         <ul className="order-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="first_name">First Name</label>
+              <label htmlFor="first_name">First Name *</label>
               <input
                 onChange={handleChange}
                 name="first_name"
@@ -99,7 +99,7 @@ function OrderForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="last_name">Last Name</label>
+              <label htmlFor="last_name">Last Name *</label>
               <input
                 onChange={handleChange}
                 name="last_name"
@@ -111,7 +111,7 @@ function OrderForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="phone">Phone number</label>
+              <label htmlFor="phone">Phone number *</label>
               <input
                 onChange={handleChange}
                 name="phone"
@@ -123,7 +123,7 @@ function OrderForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="email">E-mail</label>
+              <label htmlFor="email">E-mail *</label>
               <input
                 onChange={handleChange}
                 name="email"
@@ -140,7 +140,7 @@ function OrderForm() {
         <ul className="order-form-ul ">
           <li>
             <div className="input-container">
-              <label htmlFor="street_name">Street name</label>
+              <label htmlFor="street_name">Street name *</label>
               <input
                 onChange={handleChangeAddress}
                 name="street_name"
@@ -151,7 +151,7 @@ function OrderForm() {
           </li>
           <li>
             <div className="input-container">
-              <label htmlFor="street_number">Street number</label>
+              <label htmlFor="street_number">Street number *</label>
               <input
                 onChange={handleChangeAddress}
                 name="street_number"
@@ -163,7 +163,7 @@ function OrderForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="city">City</label>
+              <label htmlFor="city">City *</label>
               <input
                 onChange={handleChangeAddress}
                 name="city"
@@ -175,7 +175,7 @@ function OrderForm() {
           <li>
             <div className="input-container">
               {" "}
-              <label htmlFor="postal_code">Postal code</label>
+              <label htmlFor="postal_code">Postal code *</label>
               <input
                 onChange={handleChangeAddress}
                 name="postal_code"
@@ -194,12 +194,7 @@ function OrderForm() {
         </button>
       )}
 
-      <button
-        // disabled={disabled}
-        onClick={handleSubmit}
-        className="yellow-button"
-        type="submit"
-      >
+      <button onClick={handleSubmit} className="yellow-button" type="submit">
         Continue to payment
       </button>
     </form>

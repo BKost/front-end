@@ -80,7 +80,7 @@ function RegisterForm() {
                 // required
                 name="user_name"
                 type="text"
-                defaultValue="Bohdan"
+                // defaultValue="Bohdan"
               />
             </div>
           </li>
@@ -98,7 +98,7 @@ function RegisterForm() {
                 id="first_name"
                 name="first_name"
                 type="text"
-                defaultValue="Bohdan"
+                // defaultValue="Bohdan"
               />
             </div>
           </li>
@@ -110,7 +110,7 @@ function RegisterForm() {
                 // required
                 name="last_name"
                 type="text"
-                defaultValue="Kosturik"
+                // defaultValue="Kosturik"
               />
             </div>
           </li>
@@ -122,7 +122,7 @@ function RegisterForm() {
                 // required
                 name="phone"
                 type="tel"
-                defaultValue="0951670272"
+                // defaultValue="0951670272"
               />
             </div>
           </li>
@@ -134,7 +134,7 @@ function RegisterForm() {
                 // required
                 name="email"
                 type="text"
-                defaultValue="kosturik.bohdan@gmail.com"
+                // defaultValue="kosturik.bohdan@gmail.com"
               />
             </div>
           </li>
@@ -151,7 +151,7 @@ function RegisterForm() {
                 // required
                 name="password"
                 type="text"
-                defaultValue="12345"
+                // defaultValue="12345"
               />
             </div>
           </li>
@@ -162,7 +162,7 @@ function RegisterForm() {
                 // required
                 name="confirm_password"
                 type="text"
-                defaultValue="12345"
+                // defaultValue="12345"
               />
             </div>
           </li>
@@ -200,9 +200,7 @@ function RegisterForm() {
           </li>
         </ul>
       </section>
-      {/* {errorMessage && (
-        <p className="error-message text-align-center">{errorMessage} !</p>
-      )} */}
+
       {ErrorMessageElement}
       <button className="register-btn" type="submit">
         Create account
