@@ -1,5 +1,4 @@
 .navigation {
-  font-size: var(--nav-text);
   font-size: var(--paragraph-text);
   display: flex;
   align-items: center;
