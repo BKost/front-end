@@ -45,8 +45,8 @@ function ProductDetail() {
           {" "}
           <img
             className="product-detail-image"
-            width="3"
-            height="2"
+            width="300"
+            height="200"
             src={itemData?.image}
           />
         </div>
